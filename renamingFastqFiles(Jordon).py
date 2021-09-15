@@ -13,4 +13,4 @@ for i in os.listdir(cwd):
     src = base+i
     if i in d.keys():
         dst = d[i]
-        print('{}->{}'.format(src, dst))
+        os.rename(src,dst)
