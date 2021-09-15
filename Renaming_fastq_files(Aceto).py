@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-df=pd.read_csv('SraRunTable.csv')
+df=pd.read_csv('SraRunTable(Aceto).csv')
 
 #df.head(10)
 
