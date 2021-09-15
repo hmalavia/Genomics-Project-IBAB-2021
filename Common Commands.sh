@@ -5,4 +5,6 @@ nohup /opt/ohpc/pub/apps/sratoolkit.2.11.1-centos_linux64/bin/prefetch --option-
 nohup /opt/ohpc/pub/apps/sratoolkit.2.11.1-centos_linux64/bin/fasterq-dump -v -e 12 SRR* &
 
 ##fastqc##
-nohup fastqc *.fastq -o QCFiles/
+nohup fastqc *.fastq -o QCFiles/ &
+##multiqc##
+nohup multiqc . &
