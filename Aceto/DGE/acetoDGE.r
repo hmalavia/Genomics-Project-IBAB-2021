@@ -30,7 +30,7 @@ sce<- logNormCounts(sce)
 
 assayNames(sce)
 
-write.csv(logcounts(sce),file = "aceto_normalizedcounts.csv",row.names = F,quote = F)
+write.csv(logcounts(sce),file = "aceto_normalizedcounts.csv",row.names = T,quote = F)
 
 
 dec.aceto=modelGeneVar(sce)
