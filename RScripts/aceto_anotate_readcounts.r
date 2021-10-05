@@ -25,18 +25,19 @@ ncol(sortedanocounts)
 sortedanocounts=sortedanocounts[,c(30,1:29)]
 head(sortedanocounts)
 
-total=rowSums(sortedanocounts[2:30],dims=1)
+write.csv(sortedanocounts,file='Aceto_countMatrix.csv',row.names = F,quote = F)
 
-sortedanocounts['total']=total
+sortedanocounts['total']=rowSums(sortedanocounts[,2:30],dims=1)
 
 head(sortedanocounts)
 
-sortedanocounts=sortedanocounts[order(-total),]
+sortedanocounts=sortedanocounts[order(-sortedanocounts$total),]
 
 dim(sortedanocounts[sortedanocounts$total == 0,])
 
 sortedanocounts=sortedanocounts[!sortedanocounts$total == 0, ]
 
 write.csv(sortedanocounts,file='Aceto_anotated_readcounts.csv',row.names =F ,quote = F)
+
 
 
