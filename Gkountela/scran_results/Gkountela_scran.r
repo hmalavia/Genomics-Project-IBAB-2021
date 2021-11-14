@@ -80,6 +80,7 @@ emt_counts <- SummarizedExperiment(list(counts=emt_counts))
 
 altExp(sce,'emt') <- emt_counts
 
+altExp(sce,'emt')
 ##QC
 
 qc <- perCellQCMetrics(sce)
@@ -130,8 +131,8 @@ gridExtra::grid.arrange(
   )
 
 
-##Normalization
-
+### Normalization ###
+set.seed(100)
 clust <- quickCluster(sce,min.size=5)
 
 summary(clust)
@@ -140,25 +141,100 @@ sce.deconv <- calculateSumFactors(sce,cluster=clust)
 
 summary(sce.deconv)
 
-sce.spike <- computeSpikeFactors(sce,spikes = 'spikes')
+sce.hvgs `<- computeSpikeFactors(sce,spikes = 'spikes')
 
-summary(sizeFactors(sce.spike))
+summary(sizeFactors(sce.hvgs``))
 
 
 to.plot <- data.frame(
   Deconv=sce.deconv,
   libsize=librarySizeFactors(sce),
-  spike=sizeFactors(sce.spike),
-  CTC_type=sce.spike$Sample_Type
+  spike=sizeFactors(sce.hvgs``),
+  CTC_type=sce.hvgs`$Sample_Type
 )
 
 plot <- ggplot(to.plot, aes(x=Deconv, y=libsize)) +
   geom_point() + facet_wrap(~CTC_type) + scale_x_log10() + 
   scale_y_log10() + geom_abline(intercept=0, slope=1, color="red")
+
 plot  
 
-logn
+plot2 <- ggplot(to.plot, aes(x=spike, y=libsize)) +
+  geom_point() + facet_wrap(~CTC_type) + scale_x_log10() + 
+  scale_y_log10() + geom_abline(intercept=0, slope=1, color="red")
+
+plot2
+
 sce <- logNormCounts(sce,size.factors=to.plot$Deconv)
 
 assays(sce)
-logcounts(sce)
+head(logcounts(sce))
+
+### Feature Selection ###
+
+sce.hvgs <- modelGeneVarWithSpikes(sce,'spikes')
+
+sce.hvgs[order(sce.hvgs$bio,decreasing=T),]
+
+plot(sce.hvgs$mean, sce.hvgs$total, xlab="Mean of log-expression",
+     ylab="Variance of log-expression")
+
+fit.spike <- metadata(sce.hvgs)
+
+points(fit.spike$mean, fit.spike$var, col="red", pch=16)
+curve(fit.spike$trend(x), col="dodgerblue", add=TRUE, lwd=2)
+
+dim(sce.hvgs)
+
+chosen.hvgs <- getTopHVGs(sce.hvgs,var.field = 'bio',var.threshold = 1,row.names = T)
+
+### Subsetting EMT HVGs and Epigenes HVGs ###
+
+emt.hvgs <- merge(emt,chosen.hvgs,by.x=1,by.y=1) 
+
+emt.hvgs
+
+epi.hvgs <- merge(epigenes,chosen.hvgs,by.x=1,by.y=1) 
+
+epi.hvgs
+
+### Making separate SCE objects for epi and emt genes ###
+
+### PCA ###
+
+sce.hvgs <- sce[chosen.hvgs,] 
+sce.hvgs
+
+set.seed(100)
+
+sce <- fixedPCA(sce,subset.row = NULL)
+
+sce.hvgs <- fixedPCA(sce.hvgs,subset.row = NULL)
+
+dim(reducedDim(sce,'PCA'))
+
+dim(reducedDim(sce.hvgs,'PCA'))
+
+percent.var.sce <- attr(reducedDim(sce),'percentVar')
+
+plot(percent.var.sce,log='y',xlab='PC',ylab='Variance explained(%)')
+
+percent.var.hvg <- attr(reducedDim(sce.hvgs),'percentVar')
+
+plot(percent.var.hvg,log='y',xlab='PC',ylab='Variance explained(%)')
+
+BiocManager::install("PCAtools")
+
+library('PCAtools')
+
+chosen.elbow <- findElbowPoint(percent.var.hvg)
+
+abline(v=chosen.elbow,col='red')
+
+### Ploting PCA ###
+
+plotReducedDim(sce.hvgs,dimred = 'PCA',colour_by = 'Sample_Type')
+
+plotReducedDim(sce.hvgs,dimred = 'PCA',colour_by = 'Donor',shape_by = 'Sample_Type')
+
+plotReducedDim(sce.hvgs,dimred = 'PCA',ncomponents = 3,colour_by = 'Donor',shape_by = 'Sample_Type')
