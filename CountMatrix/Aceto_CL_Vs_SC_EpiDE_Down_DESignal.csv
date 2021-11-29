@@ -1,0 +1,6 @@
+HGNC.approved.symbol,HGNC.approved.name,Function,Modification,Target.entity,Product,X,X.1,X.2,X.3,X.4,X.5,X.6,X.7,X.8,X.9,X.10,norm_foldChange,log2FC,Type
+ACTB,actin, beta,Chromatin remodeling cofactor,#,#,#,,,,,,,,,,,0.0543106223363837,-4.20262179481549,DEa
+WAC,WW domain containing adaptor with coiled-coil,Histone modification write cofactor,Histone ubiquitination,#,#,,,,,,,,,,,,0.0333524526176509,-4.9060633339355,DEa
+CIR1,corepressor interacting with RBPJ,1,Histone modification read,#,#,#,,,,,,,,,,,0.0130505273940106,-6.25974808004091,DEg
+JAK2,Janus kinase 2,Histone modification write,Histone phosphorylation,H3T41,H3T41ph,,,,,,,,,,,,0.00103549673973409,-9.91546127342801,DEg
+BCOR,BCL6 corepressor,Polycomb group (PcG) protein,#,#,#,,,,,,,,,,,,0.000678013549572553,-10.5263982747633,DEg

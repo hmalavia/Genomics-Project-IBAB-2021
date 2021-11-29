@@ -1,0 +1,11 @@
+	Sample_Type	Donor
+Br38.12	CTC-single	Br38
+Br39.16	CTC-single	Br39
+Br39.23	CTC-cluster	Br39
+Br11.11	CTC-single	Br11
+Br11.7	CTC-single	Br11
+Br57.CTC.10	CTC-single	Br57
+Br61.CTC.25	CTC-single	Br61
+Br61.CTC.35	CTC-single	Br61
+Br61.CTC.45	CTC-cluster	Br61
+Br7.2	CTC-single	Br7

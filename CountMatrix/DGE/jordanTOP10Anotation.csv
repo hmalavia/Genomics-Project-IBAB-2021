@@ -1,0 +1,11 @@
+APOBEC3C,apolipoprotein B mRNA editing enzyme, catalytic polypeptide-like 3C,DNA modification, RNA modification,DNA demethylation, mRNA editing,ssDNA, mRNA, mC,dhU,,,,,,
+ARRB1,arrestin, beta 1,Histone modification,#,#,#,,,,,,,,,,
+GADD45A,growth arrest and DNA-damage-inducible, alpha,Chromatin remodeling,#,H2A, H2B, H3, H4,#,,,,,,,
+GFI1B,growth factor independent 1B transcription repressor,Histone modification cofactor,#,#,#,,,,,,,,,,,
+HDAC5,histone deacetylase 5,Histone modification erase,Histone acetylation,H2AKac, H2BKac, H3Kac, H4Kac,H2AK, H2BK, H3K, H4K,,,,,
+MAX,MYC associated factor X,Histone modification write cofactor, TF,Histone methylation, Histone acetylation, TF activator, TF repressor,DNA motif,#,,,,,,,
+MGA,MGA, MAX dimerization protein,Histone modification write cofactor, TF,Histone methylation, Histone acetylation, TF activator, TF repressor,DNA motif,#,,,,,,
+PADI4,peptidyl arginine deiminase, type IV,Histone modification,Histone citrullination,H2AR, H3R2, H3R8, H3R17, H3R26, H4R,H2ARci, H3R2ci, H3R8ci, H3R17ci, H3R26ci, H4Rci
+PRKCB,protein kinase C, beta,Histone modification write,Histone methylation,H3T6,H3T6ph,,,,,,,,,,
+PRKCD,protein kinase C, delta,Histone modification,#,#,#,,,,,,,,,,
+GSTP1,,,,,,,,,,,,,,,,

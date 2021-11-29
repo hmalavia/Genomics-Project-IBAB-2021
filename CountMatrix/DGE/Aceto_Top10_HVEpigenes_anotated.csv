@@ -1,0 +1,11 @@
+HGNC.approved.symbol,mean,total,tech,bio,p.value,FDR,HGNC.approved.name,Function,Modification,Target.entity,Product,X,X.1,X.2,X.3,X.4,X.5,X.6,X.7,X.8,X.9,X.10
+DZIP3,3.82426111628136,23.6658846435808,14.9656933966509,8.70019124692992,0.00906364322608906,0.31230161985546,DAZ interacting zinc finger protein 3,Histone modification write,Histone ubiquitination,H2AK119,H2AK119ub,,,,,,,,,,,
+ING5,4.68251611083813,24.5443397335238,16.2103028466491,8.33403688687467,0.0183194478964313,0.466004290808038,inhibitor of growth family, member 5,Histone modification read,#,H3K4me3, H3K4me2,#,,,,,,,,,
+BPTF,6.43834979831917,24.1805686458623,16.393323887545,7.78724475831728,0.0267503969986004,0.550329375418134,bromodomain PHD finger transcription factor,Chromatin remodeling,#,#,#,,,,,,,,,,,
+BRWD3,3.52444874963805,22.083598237351,14.3330204611021,7.75057777624897,0.0139742148049895,0.398365655861662,bromodomain and WD repeat domain containing 3,Histone modification read,#,H3,#,,,,,,,,,,,
+UBR2,5.64420175973169,24.1818987744142,16.6683113600844,7.51358741432981,0.033455767528147,0.597379999923542,ubiquitin protein ligase E3 component n-recognin 2,Histone modification write,Histone ubiquitination,H2A,#,,,,,,,,,,,
+ATF7IP,5.28705369704895,23.7057500200275,16.6177113923697,7.08803862765777,0.041480660245423,0.603735964086277,activating transcription factor 7 interacting protein,Histone modification write cofactor,Histone methylation,#,#,,,,,,,,,,,
+BCOR,3.88190617921719,21.9042914516871,15.07484568118,6.82944577050711,0.032776001601249,0.597379999923542,BCL6 corepressor,Polycomb group (PcG) protein,#,#,#,,,,,,,,,,,
+PRKCB,5.07758419302741,23.2688429750204,16.5232169716677,6.74562600335276,0.0485138484273607,0.661742252645153,protein kinase C, beta,Histone modification write,Histone methylation,H3T6,H3T6ph,,,,,,,,,,
+UIMC1,3.78865294128961,21.430197105479,14.8968258788344,6.5333712266446,0.0373180654073613,0.597379999923542,ubiquitin interaction motif containing 1,Histone modification read,#,H2AK63ub, H2AXK63ub, H2BK63ub,#,,,,,,,,,
+NCOA3,3.79224940064944,21.2469441035857,14.9038258423716,6.34311826121409,0.0418179333222319,0.605863110747145,nuclear receptor coactivator 3,Histone modification write,Histone acetylation,#,#,,,,,,,,,,,

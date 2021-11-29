@@ -1,0 +1,11 @@
+HGNC.approved.symbol,HGNC.approved.name,Function,Modification,Target.entity,Product,X,X.1,X.2,X.3,X.4,X.5,X.6,X.7,X.8,X.9,X.10,logFC,logCPM,F,PValue
+FOXP2,forkhead box P2,TF,#,DNA motif,#,,,,,,,,,,,,11.3948682831211,4.89222459474785,20.587592672103,5.69937703163423e-06
+KDM4D,lysine (K)-specific demethylase 4D,Histone modification erase,Histone methylation,H3K9me3,H3K9me1, H3K9me2,,,,,,,,,,,9.61987812713533,6.08653611188533,13.9748284837373,0.000185320806414269
+PAF1,Paf1, RNA polymerase II associated factor, homolog (S. cerevisiae),Histone modification write cofactor,Histone ubiquitination,H2, H3,#,,,,,,,,,9.54172905867178,11.4919454899906,11.926211686789,0.000553598889424581
+YEATS4,YEATS domain containing 4,Histone modification write cofactor,Histone acetylation,#,#,,,,,,,,,,,,9.37886379372759,2.93464934499643,16.5460907636441,4.74980761788292e-05
+PCGF1,polycomb group ring finger 1,Polycomb group (PcG) protein,#,#,#,,,,,,,,,,,,8.28240107318199,3.97999053674804,12.0772594323196,0.000510502682751959
+CCDC101,coiled-coil domain containing 101,Histone modification read,#,H3K4me, H3K4me3,#,,,,,,,,,,,8.23478894170196,6.69028198164432,12.0778210762457,0.000510348925314387
+CHD9,chromodomain helicase DNA binding protein 9,Chromatin remodeling,#,#,#,,,,,,,,,,,,8.09006491325417,11.0195220880466,9.96263721817754,0.00159770315913013
+EYA2,EYA transcriptional coactivator and phosphatase 2,Histone modification erase,Histone phosphorylation,H2AXT142,#,,,,,,,,,,,,8.01840411248084,1.6874931902483,14.8859035975877,0.000114245388973595
+SUPT3H,suppressor of Ty 3 homolog (S. cerevisiae),Histone modification write cofactor,Histone acetylation,#,#,,,,,,,,,,,,7.99460222257287,1.66685569622469,14.8566644985095,0.000116029979945241
+CDC6,cell division cycle 6,Chromatin remodeling,#,#,#,,,,,,,,,,,,7.75647469537524,1.45883277301246,14.5318643385966,0.000137845843338707

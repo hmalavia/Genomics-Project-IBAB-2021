@@ -1,0 +1,11 @@
+HGNC.approved.symbol,HGNC.approved.name,Function,Modification,Target.entity,Product,X,X.1,X.2,X.3,X.4,X.5,X.6,X.7,X.8,X.9,X.10,logFC,logCPM,F,PValue
+BRDT,bromodomain, testis-specific,Histone modification read,#,H4K5ac, H4K8ac,#,,,,,,,,,,-2.14101669864138,-1.24846964342409,7.27735106580159,0.00698346872087607
+TET3,tet methylcytosine dioxygenase 3,DNA modification,DNA hydroxymethylation,mC,hmC,,,,,,,,,,,,-2.5842682211785,-1.17949252485431,8.21309100741236,0.0231313264864967
+L3MBTL3,l(3)mbt-like 3 (Drosophila),Histone modification read,#,H4K20me,#,,,,,,,,,,,,-2.62970747085834,-1.17600802449518,8.48483847766064,0.00358153905449493
+SUV39H2,suppressor of variegation 3-9 homolog 2 (Drosophila),Histone modification write,Histone methylation,H3K9me1,H3K9me3,,,,,,,,,,,,-3.9037530233887,-0.520181009592338,5.96040381827781,0.0146314619282138
+BRCA2,breast cancer 2, early onset,Histone modification write,Histone acetylation,H3, H4, ssDNA,#,,,,,,,,,-3.94320158881491,-0.829028543289933,10.645823747915,0.00110336322147545
+CDC73,cell division cycle 73,Histone modification write cofactor,Histone methylation,#,#,,,,,,,,,,,,-4.01320301582798,4.8889856028361,3.88335278035569,0.0487683138715753
+TFPT,TCF3 (E2A) fusion partner (in childhood Leukemia),Chromatin remodeling cofactor, DNA modification,DNA hydroxymethylation,#,#,,,,,,,,,,,-4.02584391789328,5.86501134990928,3.86030239759177,0.0494426566216734
+EXOSC9,exosome component 9,Scaffold protein, RNA modification,RNA degradation,#,#,,,,,,,,,,,-4.16752733085539,4.85486621887311,4.11879251876674,0.0424105230645169
+PHF20L1,PHD finger protein 20-like 1,Histone modification read,#,H3K4me,#,,,,,,,,,,,,-4.23373777783853,9.04546829180155,3.89555521315428,0.0484152671261415
+MBD6,methyl-CpG binding domain protein 6,Chromatin remodeling,#,#,#,,,,,,,,,,,,-4.26291877935998,9.20610985515743,3.89786687782458,0.0483486894086807

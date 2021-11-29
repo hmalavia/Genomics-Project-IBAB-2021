@@ -1,0 +1,8 @@
+HGNC.approved.symbol,HGNC.approved.name,Function,Modification,Target.entity,Product,X,X.1,X.2,X.3,X.4,X.5,X.6,X.7,X.8,X.9,X.10,norm_foldChange,log2FC,Type
+KDM4D,lysine (K)-specific demethylase 4D,Histone modification erase,Histone methylation,H3K9me3,H3K9me1, H3K9me2,,,,,,,,,,,1594.52153110048,10.6389078633449,DEg
+PAF1,Paf1, RNA polymerase II associated factor, homolog (S. cerevisiae),Histone modification write cofactor,Histone ubiquitination,H2, H3,#,,,,,,,,,1348.01088555457,10.3966164313838,DEg
+CHD9,chromodomain helicase DNA binding protein 9,Chromatin remodeling,#,#,#,,,,,,,,,,,,326.657114624506,8.35163325189772,DEg
+CECR2,cat eye syndrome chromosome region, candidate 2,Histone modification read,#,H2A, H3,#,,,,,,,,,,48.2435064935065,5.59226286566067,DEg
+ING1,inhibitor of growth family, member 1,Histone modification read,#,H3K4me3,#,,,,,,,,,,,47.6078697421981,5.57312817051287,DEg
+KDM6A,lysine (K)-specific demethylase 6A,Histone modification erase,Histone methylation,H3K27me2. H3K27me3,H3K27,,,,,,,,,,,,20.9890909090909,4.39156777607918,DEg
+RAD54L,RAD54-like (S. cerevisiae),Chromatin remodeling,#,#,#,,,,,,,,,,,,9.06060606060606,3.17960755483965,DEg

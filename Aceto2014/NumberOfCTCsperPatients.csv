@@ -1,0 +1,21 @@
+single_cells_or_cluster,patient,Number of CTCs
+CL,Patient#1,6
+,Patient#10,12
+,Patient#2,6
+,Patient#3,6
+,Patient#4,18
+,Patient#5,5
+,Patient#6,6
+,Patient#7,6
+,Patient#8,12
+,Patient#9,6
+SC,Patient#1,6
+,Patient#10,5
+,Patient#2,6
+,Patient#3,6
+,Patient#4,12
+,Patient#5,12
+,Patient#6,6
+,Patient#7,12
+,Patient#8,18
+,Patient#9,6
