@@ -26,15 +26,25 @@ br61
 
 coldata <- read.csv('Gkountela_coldata.csv')
 
+coldata <- read.csv('coldata61.csv')
+
 row.names(coldata) <- coldata$X.Sample_title
 
 coldata <- coldata[,2:ncol(coldata)]
 
+coldata61 <- coldata
+
 coldata61 <- coldata[grep('Br61',rownames(coldata)),]
 
-coldata61
+#coldata61
+
+#coldata61 <- coldata61[order(coldata61$Sample_Type),]
+
+#write.csv(coldata61,'coldata61.csv',quote = F)
 
 length(rownames(coldata61))
+
+head(coldata61)
 
 ## Create singleCellExperimentObject ##
 
@@ -112,6 +122,8 @@ colData(unfiltered)
 
 unfiltered$discard <- reasons$discard
 
+colData(unfiltered[,unfiltered$discard])
+
 colData(unfiltered[,unfiltered$discard])[1,ncol(colData(unfiltered))] = F
 
 
@@ -127,6 +139,10 @@ gridExtra::grid.arrange(
   nrow=2,
   ncol=3
 )
+
+#sce[,unfiltered$discard]
+
+#colData(sce[,unfiltered$discard])
 
 sce <- sce[,!unfiltered$discard]
 
@@ -212,11 +228,11 @@ abline(v=chosen.elbow,col='red')
 
 ### Ploting PCA ###
 
-plotReducedDim(sce.hvgs,dimred = 'PCA',colour_by = 'Sample_Type',point_size=2.5)
+plotReducedDim(sce.hvgs,dimred = 'PCA',colour_by = 'Sample_Type',point_size=2.5,text_by = 'Sample_Name')
 
 plotReducedDim(sce.hvgs,dimred = 'PCA',ncomponents = 4,colour_by = 'Donor',shape_by = 'Sample_Type', point_size=2.5)
 
-plotReducedDim(sce.hvgs,dimred = 'PCA', ncomponents=c(1,3), colour_by='Sample_Type', shape_by = 'Sample_Type',point_size=2.5)
+plotReducedDim(sce.hvgs,dimred = 'PCA', ncomponents=c(1,3), colour_by='Sample_Type', shape_by = 'Sample_Type',point_size=2.5,text_by = 'Sample_Name',text_size = 2.5)
 
 ### T-SNE ###
 set.seed(100100)
@@ -285,6 +301,59 @@ labels_colors(dend) <- c('CTC-cluster' = 'red',
                          'CTC-single' = 'blue')[order.dendrogram(dend)]
 plot(dend)
 
+## DE analysis using edgeR ## 
 
+library('edgeR')
 
+counts61 <- counts(sce.hvgs)
+
+groups <- c(1,1,1,1,1,1,1,2,2,2,2,2)
+
+y <- DGEList(counts61,samples=colData(sce.hvgs),group = groups )
+
+y$counts
+
+nrow(y$samples['Sample_Name'])
+
+y <- calcNormFactors(y)
+
+length(y$samples)
+
+sce.hvgs$sizeFactor
+
+ncol(y)
+
+## MD plot ##
+par(mfrow=c(3,4))
+for (i in seq_len(ncol(y))) {
+  plotMD(y, column=i)
+}
+
+y <- estimateDisp(y)
+
+et <- exactTest(y)
+
+toptags <- topTags(et)
+
+toptags
+
+summary(decideTestsDGE(et))
+
+result <- et$table
+
+result <- result[order(-result$logFC),]
+
+upreg <- result[result$logFC > 2 & result$PValue < 0.05,]
+
+Downregs <- result[result$logFC < -2 &  result$PValue < 0.05,]
+
+tail(result)
+
+upreg <- upreg[order(-upreg$logFC),]
+
+write.csv(upreg,'scran_results/Br61_upregulated_genes_ALL_edgeR.csv',quote = F)
+
+Downregs <- Downregs[order(Downregs$logFC),]
+
+write.csv(Downregs,'scran_results/Br61_downregulated_genes_ALL_edgeR.csv',quote = F)
 
