@@ -1,0 +1,5 @@
+,Origin,Sample_Type,Number_of_Cells,CTC_Cluster_Size,Number_of_CTC,Donor,Sample_ID
+Br7.7.12,patient,CTC-cluster,3,3,3,Br7,CTC-cluster_1
+Br7.1.SG,patient,CTC-cluster,3,3,3,Br7,CTC-cluster_2
+Br7.2,patient,CTC-single,1,NA,1,Br7,CTC-single_1
+Br7.5,patient,CTC-single,1,NA,1,Br7,CTC-single_2

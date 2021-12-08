@@ -1,6 +1,6 @@
 #rm(list=ls())
 
-## Br 16 ###
+## Br 07 ###
 
 ## Load libraries ##
 library('scran')
@@ -19,10 +19,10 @@ counts <- as.matrix(counts)
 
 head(counts)
 
-samples <- grep('Br16',colnames(counts))
+samples <- grep('Br7',colnames(counts))
 
-br16 <- counts[,samples]
-br16
+br7 <- counts[,samples]
+br7
 
 ## load sample data ##
 
@@ -34,13 +34,11 @@ coldata <- coldata[,2:ncol(coldata)]
 
 coldata
 
-coldata16 <- coldata[samples,]
+coldata7 <- coldata[samples,]
 
-coldata16
+coldata7
 
-coldata16 <- coldata16[order(coldata16$Sample_Type),]
-
-coldataCopy <- coldata16
+coldata7 <- coldata7[order(coldata7$Sample_Type),]
 
 generate_SampleID <- function(cd){
   k=1
@@ -63,13 +61,13 @@ generate_SampleID <- function(cd){
   return(cd)
 }
 
-coldata16 <- generate_SampleID(coldata16)
+coldata7 <- generate_SampleID(coldata7)
 
-write.csv(coldata16,'coldata16.csv',quote = F)
+write.csv(coldata7,'coldata7.csv',quote = F)
 
 ## Create singleCellExperimentObject ##
 
-sce <- SingleCellExperiment(assays = list(counts = br16),colData = coldata16)
+sce <- SingleCellExperiment(assays = list(counts = br7),colData = coldata7)
 
 sce$Sample_Type <- factor(sce$Sample_Type)
 sce$Donor <- factor(sce$Donor)
@@ -77,9 +75,9 @@ sce@colData
 
 ## Adding spike in counts as altexp ##
 
-spikes <- grep(rownames(br16),pattern = "^ERCC-",value = T)
+spikes <- grep(rownames(br7),pattern = "^ERCC-",value = T)
 
-spikecounts <- br16[spikes,]
+spikecounts <- br7[spikes,]
 
 spikein <- SummarizedExperiment(list(counts=spikecounts))
 
@@ -91,7 +89,7 @@ epigenes <- read.csv('../CountMatrix/Epigenes_unique.csv')
 
 head(epigenes)
 
-epigene_counts <- merge(br16,epigenes,by.x=0,by.y=1)
+epigene_counts <- merge(br7,epigenes,by.x=0,by.y=1)
 
 row.names(epigene_counts) <- epigene_counts$Row.names
 
@@ -115,7 +113,7 @@ emt <- unique(emt)
 
 head(emt)
 
-emt_counts <- merge(br16,emt,by.x=0,by.y=1)
+emt_counts <- merge(br7,emt,by.x=0,by.y=1)
 
 row.names(emt_counts) <- emt_counts$Row.names
 
@@ -142,8 +140,6 @@ colData(unfiltered) <- cbind(colData(unfiltered),qc)
 colData(unfiltered)
 
 unfiltered$discard <- reasons$discard
-
-colData(unfiltered[,unfiltered$discard])[1,ncol(colData(unfiltered))] = F
 
 gridExtra::grid.arrange(
   plotColData(unfiltered, x="Sample_Type", y="sum", 
@@ -252,7 +248,7 @@ plotReducedDim(sce.hvgs,dimred = 'PCA',colour_by = 'Sample_Type',point_size=2.5)
 
 plotReducedDim(sce.hvgs,dimred = 'PCA',colour_by = 'Sample_Type',point_size=2.5,text_by = 'Sample_ID',text_size = 2.5)
 
-plotReducedDim(sce.hvgs,dimred = 'PCA',ncomponents = 4,colour_by = 'Sample_Type',shape_by = 'Sample_Type', point_size=2.5)
+plotReducedDim(sce.hvgs,dimred = 'PCA',ncomponents = 3,colour_by = 'Sample_Type',shape_by = 'Sample_Type', point_size=2.5)
 
 plotReducedDim(sce.hvgs,dimred = 'PCA', ncomponents=c(1,3), colour_by='Sample_Type', shape_by = 'Sample_Type',point_size=2.5,text_by = 'Sample_ID',text_size = 2.5)
 
@@ -334,21 +330,17 @@ plot(dend)
 library('edgeR')
 
 sce.hvgs$Sample_ID
-groups <- c(1,1,1,2,2)
+groups <- c(1,1,2,2)
 
 y <- DGEList(counts(sce.hvgs),samples=colData(sce.hvgs),group = groups )
 
 y$counts
-
-nrow(y$samples['Sample_Name'])
 
 y <- calcNormFactors(y)
 
 length(y$samples)
 
 sce.hvgs$sizeFactor
-
-ncol(y)
 
 ## MD plot ##
 par(mfrow=c(3,4))
@@ -370,6 +362,8 @@ result <- et$table
 
 result <- result[order(-result$logFC),]
 
+write.csv(result,'Br7_edgeR_result.csv',quote=F)
+
 upreg <- result[result$logFC > 2,]
 
 upregsig <- upreg[upreg$PValue <= 0.05,]
@@ -384,13 +378,13 @@ upreg <- upreg[order(-upreg$logFC),]
 
 upregsig <- upregsig[order(-upregsig$logFC),]
 
-write.csv(upregsig,'scran_results/Br16_upregulated_genes_ALL_edgeR.csv',quote = F)
+write.csv(upregsig,'scran_results/Br7_upregulated_genes_ALL_edgeR.csv',quote = F)
 
 Downregs <- Downregs[order(Downregs$logFC),]
 
 Downregsig <- Downregsig[order(Downregsig$logFC),]
 
-write.csv(Downregsig,'scran_results/Br16_downregulated_genes_ALL_edgeR.csv',quote = F)
+write.csv(Downregsig,'scran_results/Br7_downregulated_genes_ALL_edgeR.csv',quote = F)
 
 logcpm <- cpm(counts(sce.hvgs),log=T)
 
@@ -406,7 +400,7 @@ colnames(logUp) <- new_col_names
 
 colnames(logDown) <- new_col_names 
 
-Updown <- rbind(logUp[0:10,],logDown)
+Updown <- rbind(logUp,logDown[0:10,])
 
 ## HeatMap ##
 
