@@ -1,4 +1,4 @@
-## Br 61 ###
+## Br 61 ##
 
 ## Load libraries ##
 library('scran')
@@ -24,31 +24,21 @@ br61
 
 ## load sample data ##
 
-coldata <- read.csv('Gkountela_coldata.csv')
+#coldata <- read.csv('Gkountela_coldata.csv')
 
 coldata <- read.csv('coldata61.csv')
 
-row.names(coldata) <- coldata$X.Sample_title
+rownames(coldata) <- coldata$X
 
 coldata <- coldata[,2:ncol(coldata)]
 
-coldata61 <- coldata
-
-coldata61 <- coldata[grep('Br61',rownames(coldata)),]
-
-#coldata61
-
-#coldata61 <- coldata61[order(coldata61$Sample_Type),]
+coldata
 
 #write.csv(coldata61,'coldata61.csv',quote = F)
 
-length(rownames(coldata61))
-
-head(coldata61)
-
 ## Create singleCellExperimentObject ##
 
-sce <- SingleCellExperiment(assays = list(counts = br61),colData = coldata61)
+sce <- SingleCellExperiment(assays = list(counts = br61),colData = coldata)
 
 sce$Sample_Type <- factor(sce$Sample_Type)
 sce$Donor <- factor(sce$Donor)
@@ -228,11 +218,16 @@ abline(v=chosen.elbow,col='red')
 
 ### Ploting PCA ###
 
+plotReducedDim(sce.hvgs,dimred = 'PCA',colour_by = 'Sample_Type',point_size=2.5)
+
 plotReducedDim(sce.hvgs,dimred = 'PCA',colour_by = 'Sample_Type',point_size=2.5,text_by = 'Sample_Name')
 
 plotReducedDim(sce.hvgs,dimred = 'PCA',ncomponents = 4,colour_by = 'Donor',shape_by = 'Sample_Type', point_size=2.5)
 
 plotReducedDim(sce.hvgs,dimred = 'PCA', ncomponents=c(1,3), colour_by='Sample_Type', shape_by = 'Sample_Type',point_size=2.5,text_by = 'Sample_Name',text_size = 2.5)
+
+plotReducedDim(sce.hvgs,dimred = 'PCA', ncomponents=c(1,3), colour_by='Sample_Type', shape_by = 'Sample_Type',point_size=2.5)
+
 
 ### T-SNE ###
 set.seed(100100)
@@ -357,3 +352,22 @@ Downregs <- Downregs[order(Downregs$logFC),]
 
 write.csv(Downregs,'scran_results/Br61_downregulated_genes_ALL_edgeR.csv',quote = F)
 
+logcpm <- cpm(counts61,log=T)
+
+logUp <- logcpm[rownames(upreg),]
+
+logDown <- logcpm[rownames(Downregs),]
+
+new_col_names <- y$samples$Sample_Name
+
+colnames(logUp) <- new_col_names 
+
+colnames(logDown) <- new_col_names 
+
+Updown <- rbind(logUp,logDown)
+
+## HeatMap ##
+
+library('pheatmap')
+
+pheatmap(as.matrix(Updown))
