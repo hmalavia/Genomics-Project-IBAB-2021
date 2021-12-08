@@ -1,0 +1,14 @@
+,Origin,Sample_Type,Number_of_Cells,CTC_Cluster_Size,Number_of_CTC,Donor
+Br11.10,patient,CTC-cluster,2,2,2,Br11
+Br11.18,patient,CTC-cluster,2,2,2,Br11
+Br11.1,patient,CTC-single,1,NA,1,Br11
+Br11.11,patient,CTC-single,1,NA,1,Br11
+Br11.17,patient,CTC-single,1,NA,1,Br11
+Br11.19,patient,CTC-single,1,NA,1,Br11
+Br11.2,patient,CTC-single,1,NA,1,Br11
+Br11.3,patient,CTC-single,1,NA,1,Br11
+Br11.4,patient,CTC-single,1,NA,1,Br11
+Br11.6,patient,CTC-single,1,NA,1,Br11
+Br11.7,patient,CTC-single,1,NA,1,Br11
+Br11.8,patient,CTC-single,1,NA,1,Br11
+Br11.9,patient,CTC-single,1,NA,1,Br11
