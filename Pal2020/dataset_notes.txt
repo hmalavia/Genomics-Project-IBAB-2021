@@ -1,0 +1,19 @@
+### PAL2020 ###
+
+Sc profiling of 34 treatment naive primary tumors > ER+/HER2+/TNBC
+Tissues > Normal breast + preneoplastic BRCA1+/- tissue (28 specimens)
+	> major BC subtypes (34 specimens)
+	> Tumor(ER+) + Lymph node pairs (7)
+Library preparation > droplet based 10x Gnomics chromium
+	> 69 distinct surgical tissue from 55 patients = expression profiles for 430,000 cells
+	> QC filter -> 342,000 cells
+	> No. genes detected 13k-20k (median = 17.7k)
+	
+### Chung2017 ###
+
+Patients > 11
+	 > Subtypes : luminal A;luminal B;HER2,TNBC
+	 > ER+ -> (BC01,BCO2;luminal A)
+	 > ER/HER2+ -> (BC03;luminal B)
+	 > HER2+ -> (BC04,5,6)
+	 > TNBC -> (BC07-BC11)
