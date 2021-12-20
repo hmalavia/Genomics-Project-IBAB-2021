@@ -63,7 +63,7 @@ generate_SampleID <- function(cd){
 
 coldata7 <- generate_SampleID(coldata7)
 
-write.csv(coldata7,'coldata7.csv',quote = F)
+#write.csv(coldata7,'coldata7.csv',quote = F)
 
 ## Create singleCellExperimentObject ##
 
@@ -71,7 +71,7 @@ sce <- SingleCellExperiment(assays = list(counts = br7),colData = coldata7)
 
 sce$Sample_Type <- factor(sce$Sample_Type)
 sce$Donor <- factor(sce$Donor)
-sce@colData
+#sce@colData
 
 ## Adding spike in counts as altexp ##
 
@@ -128,7 +128,7 @@ altExp(sce,'emt')
 ## QC ##
 
 qc <- perCellQCMetrics(sce)
-qc
+#qc
 
 reasons <- quickPerCellQC(qc,sub.fields='altexps_spikes_percent')
 
@@ -156,7 +156,7 @@ gridExtra::grid.arrange(
 
 #sce[,unfiltered$discard]
 
-colData(sce[,unfiltered$discard])
+#colData(sce[,unfiltered$discard])
 
 sce <- sce[,!unfiltered$discard]
 
@@ -185,11 +185,11 @@ set.seed(100)
 
 lib.sf <- librarySizeFactors(sce)
 
-summary(lib.sf)
+#summary(lib.sf)
 
 sce <- logNormCounts(sce,size.factors=lib.sf)
 
-assays(sce)
+#assays(sce)
 
 ### Feature Selection ###
 
@@ -209,12 +209,12 @@ dim(sce.hvgs)
 
 chosen.hvgs <- getTopHVGs(sce.hvgs,var.field = 'bio',var.threshold = 1,row.names = T)
 
-length(chosen.hvgs)
+#length(chosen.hvgs)
 
 ### PCA ###
 
 sce.hvgs <- sce[chosen.hvgs,] 
-sce.hvgs
+#sce.hvgs
 
 set.seed(100)
 
@@ -303,28 +303,6 @@ clust.louvain_jaccard
 
 plotReducedDim(sce.hvgs,'PCA',colour_by = 'label',shape_by='Sample_Type',point_size=2.5)
 
-
-## Hierarchical Clustering ##
-
-hclust <- clusterCells(sce.hvgs,use.dimred = 'PCA',
-                       BLUSPARAM = HclustParam(method='ward.D2'),full=T)
-
-tree <- hclust$objects$hclust
-
-tree
-
-#install.packages('dendextend')
-
-library(dendextend)
-
-tree$labels <- seq_along(tree$labels)
-
-dend <- as.dendrogram(tree,hang=0.1)
-
-labels_colors(dend) <- c('CTC-cluster' = 'red',
-                         'CTC-single' = 'blue')[order.dendrogram(dend)]
-plot(dend)
-
 ## DE analysis using edgeR ## 
 
 library('edgeR')
@@ -334,13 +312,13 @@ groups <- c(1,1,2,2)
 
 y <- DGEList(counts(sce.hvgs),samples=colData(sce.hvgs),group = groups )
 
-y$counts
+#y$counts
 
 y <- calcNormFactors(y)
 
-length(y$samples)
+#length(y$samples)
 
-sce.hvgs$sizeFactor
+#sce.hvgs$sizeFactor
 
 ## MD plot ##
 par(mfrow=c(3,4))
@@ -364,11 +342,15 @@ result <- result[order(-result$logFC),]
 
 write.csv(result,'Br7_edgeR_result.csv',quote=F)
 
-upreg <- result[result$logFC > 2,]
+#upreg <- result[result$logFC > 2,]
+
+upreg <- result[result$logFC > 1,]
 
 upregsig <- upreg[upreg$PValue <= 0.05,]
 
-Downregs <- result[result$logFC < -2,]
+#Downregs <- result[result$logFC < -2,]
+
+Downregs <- result[result$logFC < -1,]
 
 Downregsig <- Downregs[Downregs$PValue <= 0.05,]
 
@@ -407,4 +389,6 @@ Updown <- rbind(logUp,logDown[0:10,])
 library('pheatmap')
 
 pheatmap(as.matrix(Updown))
+
+#### setting logFC critieria to 1 ####
 

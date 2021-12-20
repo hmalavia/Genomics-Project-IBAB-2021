@@ -1,11 +1,11 @@
 ## Br 61 ##
 
-## Load libraries ##
+#### Load libraries ####
 library('scran')
 library('scater')
 library('edgeR')
 
-## Load Count Data ##
+#### Load Count Data ####
 
 counts <- read.csv('Gkountela_Patient_unprocessed_rawcounts.csv')
 
@@ -22,7 +22,7 @@ br61 <- grep(colnames(counts),'Br61')
 br61 <- counts[,grep('Br61',colnames(counts))]
 br61
 
-## load sample data ##
+#### load sample data ####
 
 #coldata <- read.csv('Gkountela_coldata.csv')
 
@@ -36,7 +36,7 @@ coldata
 
 #write.csv(coldata61,'coldata61.csv',quote = F)
 
-## Create singleCellExperimentObject ##
+#### Create singleCellExperimentObject ####
 
 sce <- SingleCellExperiment(assays = list(counts = br61),colData = coldata)
 
@@ -44,7 +44,7 @@ sce$Sample_Type <- factor(sce$Sample_Type)
 sce$Donor <- factor(sce$Donor)
 sce@colData
 
-##Adding spike in counts as altexp
+#### Adding spike in counts as altexp ####
 
 spikes <- grep(rownames(br61),pattern = "^ERCC-",value = T)
 
@@ -54,7 +54,7 @@ spikein <- SummarizedExperiment(list(counts=spikecounts))
 
 altExp(sce,'spikes') <- spikein
 
-## Adding epigene counts as altexps ##
+#### Adding epigene counts as altexps ####
 
 epigenes <- read.csv('../CountMatrix/Epigenes_unique.csv')
 
@@ -70,7 +70,7 @@ epi_counts <- SummarizedExperiment(list(counts=epigene_counts))
 
 altExp(sce,'epi') <- epi_counts
 
-## Adding emtgene counts as altexps
+#### Adding emtgene counts as altexps ####
 
 emt <- read.csv('Meschanchymal markers - Breast_cancer_only.csv',header = F)
 
@@ -96,7 +96,7 @@ altExp(sce,'emt') <- emt_counts
 
 altExp(sce,'emt')
 
-## QC ##
+#### QC ####
 
 qc <- perCellQCMetrics(sce)
 qc
@@ -154,7 +154,7 @@ gridExtra::grid.arrange(
   ncol=3
 )
 
-### Normalization ###
+#### Normalization ####
 set.seed(100)
 
 lib.sf <- librarySizeFactors(sce)
@@ -165,7 +165,7 @@ sce <- logNormCounts(sce,size.factors=lib.sf)
 
 assays(sce)
 
-### Feature Selection ###
+#### Feature Selection ####
 
 sce.hvgs <- modelGeneVarWithSpikes(sce,'spikes')
 
@@ -183,9 +183,9 @@ dim(sce.hvgs)
 
 chosen.hvgs <- getTopHVGs(sce.hvgs,var.field = 'bio',var.threshold = 1,row.names = T)
 
-length(chosen.hvgs)
+#length(chosen.hvgs)
 
-### PCA ###
+#### PCA ####
 
 sce.hvgs <- sce[chosen.hvgs,] 
 sce.hvgs
@@ -216,7 +216,7 @@ chosen.elbow <- findElbowPoint(percent.var.hvg)
 
 abline(v=chosen.elbow,col='red')
 
-### Ploting PCA ###
+#### Ploting PCA ####
 
 plotReducedDim(sce.hvgs,dimred = 'PCA',colour_by = 'Sample_Type',point_size=2.5)
 
@@ -229,7 +229,7 @@ plotReducedDim(sce.hvgs,dimred = 'PCA', ncomponents=c(1,3), colour_by='Sample_Ty
 plotReducedDim(sce.hvgs,dimred = 'PCA', ncomponents=c(1,3), colour_by='Sample_Type', shape_by = 'Sample_Type',point_size=2.5)
 
 
-### T-SNE ###
+#### T-SNE ####
 set.seed(100100)
 
 sce.hvgs <- runTSNE(sce.hvgs,dimred='PCA')
@@ -254,7 +254,7 @@ out80 <- plotReducedDim(sce.hvgs, dimred="TSNE",
 
 gridExtra::grid.arrange(out5, out20, out80, ncol=3)
 
-## Graph based Clustering ##
+#### Graph based Clustering ####
 
 library(bluster)
 
@@ -274,31 +274,9 @@ clust.louvain_jaccard
 
 plotReducedDim(sce.hvgs,'PCA',colour_by = 'label',shape_by='Sample_Type',point_size=2.5)
 
+#### DE analysis using edgeR ####
 
-## Hierarchical Clustering ##
-
-hclust <- clusterCells(sce.hvgs,use.dimred = 'PCA',
-                       BLUSPARAM = HclustParam(method='ward.D2'),full=T)
-
-tree <- hclust$objects$hclust
-
-tree
-
-#install.packages('dendextend')
-
-library(dendextend)
-
-tree$labels <- seq_along(tree$labels)
-
-dend <- as.dendrogram(tree,hang=0.1)
-
-labels_colors(dend) <- c('CTC-cluster' = 'red',
-                         'CTC-single' = 'blue')[order.dendrogram(dend)]
-plot(dend)
-
-## DE analysis using edgeR ## 
-
-library('edgeR')
+#library('edgeR')
 
 counts61 <- counts(sce.hvgs)
 
@@ -338,11 +316,19 @@ result <- et$table
 
 result <- result[order(-result$logFC),]
 
-upreg <- result[result$logFC > 2 & result$PValue < 0.05,]
+write.csv(result,'Br61_edgeR_result.csv',quote = F)
 
-Downregs <- result[result$logFC < -2 &  result$PValue < 0.05,]
+# upreg <- result[result$logFC > 2 & result$PValue < 0.05,]
+# 
+# Downregs <- result[result$logFC < -2 &  result$PValue < 0.05,]
 
-tail(result)
+upreg <- result[result$logFC >= 1,]
+
+Sigup <- upreg[upreg$PValue < 0.05,]
+
+Downregs <- result[result$logFC <= -1,]
+
+SigDown <- result[result$logFC <= -1 &  result$PValue < 0.05,]
 
 upreg <- upreg[order(-upreg$logFC),]
 

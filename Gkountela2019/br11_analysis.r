@@ -15,12 +15,12 @@ counts <- counts[,2:ncol(counts)]
 
 counts <- as.matrix(counts)
 
-head(counts)
+#head(counts)
 
 samples <- grep('Br11',colnames(counts))
 
 br11 <- counts[,samples]
-br11
+#br11
 
 ## load sample data ##
 
@@ -30,15 +30,13 @@ rownames(coldata) <- coldata$X
 
 coldata <- coldata[,2:ncol(coldata)]
 
-coldata
+#coldata
 
 coldata11 <- coldata[samples,]
 
-coldata11
+#coldata11
 
 coldata11 <- coldata11[order(coldata11$Sample_Type),]
-
-coldataCopy <- coldata11
 
 generate_SampleID <- function(cd){
   k=1
@@ -61,7 +59,8 @@ generate_SampleID <- function(cd){
   return(cd)
 }
 
-write.csv(coldata11,'coldata11.csv',quote = F)
+coldata11 <- generate_SampleID(coldata11)
+#write.csv(coldata11,'coldata11.csv',quote = F)
 
 ## Create singleCellExperimentObject ##
 
@@ -69,7 +68,7 @@ sce <- SingleCellExperiment(assays = list(counts = br11),colData = coldata11)
 
 sce$Sample_Type <- factor(sce$Sample_Type)
 sce$Donor <- factor(sce$Donor)
-sce@colData
+#sce@colData
 
 ## Adding spike in counts as altexp ##
 
@@ -126,7 +125,7 @@ altExp(sce,'emt')
 ## QC ##
 
 qc <- perCellQCMetrics(sce)
-qc
+#qc
 
 reasons <- quickPerCellQC(qc,sub.fields='altexps_spikes_percent')
 
@@ -135,11 +134,11 @@ colSums(as.matrix(reasons))
 unfiltered <- sce
 
 colData(unfiltered) <- cbind(colData(unfiltered),qc)
-colData(unfiltered)
+#colData(unfiltered)
 
 unfiltered$discard <- reasons$discard
 
-colData(unfiltered[,unfiltered$discard])
+#colData(unfiltered[,unfiltered$discard])
 
 gridExtra::grid.arrange(
   plotColData(unfiltered, x="Sample_Type", y="sum", 
@@ -183,11 +182,11 @@ set.seed(100)
 
 lib.sf <- librarySizeFactors(sce)
 
-summary(lib.sf)
+#summary(lib.sf)
 
 sce <- logNormCounts(sce,size.factors=lib.sf)
 
-assays(sce)
+#assays(sce)
 
 ### Feature Selection ###
 
@@ -207,12 +206,12 @@ dim(sce.hvgs)
 
 chosen.hvgs <- getTopHVGs(sce.hvgs,var.field = 'bio',var.threshold = 1,row.names = T)
 
-length(chosen.hvgs)
+#length(chosen.hvgs)
 
 ### PCA ###
 
 sce.hvgs <- sce[chosen.hvgs,] 
-sce.hvgs
+#sce.hvgs
 
 set.seed(100)
 
@@ -301,48 +300,26 @@ clust.louvain_jaccard
 
 plotReducedDim(sce.hvgs,'PCA',colour_by = 'label',shape_by='Sample_Type',point_size=2.5)
 
+#### DE analysis using edgeR ####
 
-## Hierarchical Clustering ##
-
-hclust <- clusterCells(sce.hvgs,use.dimred = 'PCA',
-                       BLUSPARAM = HclustParam(method='ward.D2'),full=T)
-
-tree <- hclust$objects$hclust
-
-tree
-
-#install.packages('dendextend')
-
-library(dendextend)
-
-tree$labels <- seq_along(tree$labels)
-
-dend <- as.dendrogram(tree,hang=0.1)
-
-labels_colors(dend) <- c('CTC-cluster' = 'red',
-                         'CTC-single' = 'blue')[order.dendrogram(dend)]
-plot(dend)
-
-## DE analysis using edgeR ## 
-
-library('edgeR')
+#library('edgeR')
 
 sce.hvgs$Sample_ID
 groups <- c(1,1,2,2,2,2,2,2,2,2,2)
 
 y <- DGEList(counts(sce.hvgs),samples=colData(sce.hvgs),group = groups )
 
-y$counts
+#y$counts
 
-nrow(y$samples['Sample_Name'])
+#nrow(y$samples['Sample_Name'])
 
 y <- calcNormFactors(y)
 
-length(y$samples)
+#length(y$samples)
 
-sce.hvgs$sizeFactor
+#sce.hvgs$sizeFactor
 
-ncol(y)
+#ncol(y)
 
 ## MD plot ##
 par(mfrow=c(3,4))
@@ -356,33 +333,45 @@ et <- exactTest(y)
 
 toptags <- topTags(et)
 
-toptags
+#toptags
 
-summary(decideTestsDGE(et))
+#summary(decideTestsDGE(et))
 
 result <- et$table
 
 result <- result[order(-result$logFC),]
 
-upreg <- result[result$logFC > 2 & result$PValue < 0.05,]
+write.csv(result,'Br11_edgeR_result.csv',quote = F)
 
-Downregs <- result[result$logFC < -2 &  result$PValue < 0.05,]
+#upreg <- result[result$logFC > 2,]
 
-tail(result)
+upreg <- result[result$logFC > 1,]
 
-upreg <- upreg[order(-upreg$logFC),]
+#Sigup <- result[result$logFC > 2 & result$PValue < 0.05,]
 
-write.csv(upreg,'scran_results/Br11_upregulated_genes_ALL_edgeR.csv',quote = F)
+Sigup <- result[result$logFC >= 1 & result$PValue < 0.05,]
 
-Downregs <- Downregs[order(Downregs$logFC),]
+#Downregs <- result[result$logFC < -2,]
 
-write.csv(Downregs,'scran_results/Br11_downregulated_genes_ALL_edgeR.csv',quote = F)
+Downregs <- result[result$logFC <= -1,]
+
+#SigDown <- result[result$logFC <= -2 &  result$PValue < 0.05,]
+
+SigDown <- result[result$logFC <= -1 &  result$PValue < 0.05,]
+
+Sigup <- Sigup[order(-Sigup$logFC),]
+
+write.csv(Sigup,'scran_results/Br11_upregulated_genes_ALL_edgeR.csv',quote = F)
+
+SigDown <- SigDown[order(SigDown$logFC),]
+
+write.csv(SigDown,'scran_results/Br11_downregulated_genes_ALL_edgeR.csv',quote = F)
 
 logcpm <- cpm(counts(sce.hvgs),log=T)
 
-logUp <- logcpm[rownames(upreg),]
+logUp <- logcpm[rownames(Sigup),]
 
-logDown <- logcpm[rownames(Downregs),]
+logDown <- logcpm[rownames(SigDown),]
 
 new_col_names <- sce.hvgs$Sample_ID
 
@@ -397,9 +386,3 @@ Updown <- rbind(logUp,logDown[0:10,])
 library('pheatmap')
 
 pheatmap(as.matrix(Updown))
-
-new_col_names <- y$samples$Sample_Name
-
-head(Sigupcounts)
-
-colnames(Sigupcounts) <- new_col_names
