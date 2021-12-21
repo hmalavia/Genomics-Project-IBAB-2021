@@ -130,9 +130,9 @@ gridExtra::grid.arrange(
   ncol=3
 )
 
-#sce[,unfiltered$discard]
+# sce[,unfiltered$discard]
 
-#colData(sce[,unfiltered$discard])
+colData(sce[,unfiltered$discard])
 
 sce <- sce[,!unfiltered$discard]
 
@@ -222,7 +222,7 @@ plotReducedDim(sce.hvgs,dimred = 'PCA',colour_by = 'Sample_Type',point_size=2.5)
 
 plotReducedDim(sce.hvgs,dimred = 'PCA',colour_by = 'Sample_Type',point_size=2.5,text_by = 'Sample_Name')
 
-plotReducedDim(sce.hvgs,dimred = 'PCA',ncomponents = 4,colour_by = 'Donor',shape_by = 'Sample_Type', point_size=2.5)
+plotReducedDim(sce.hvgs,dimred = 'PCA',ncomponents = 4,colour_by = 'Sample_Type',shape_by = 'Sample_Type', point_size=2.5)
 
 plotReducedDim(sce.hvgs,dimred = 'PCA', ncomponents=c(1,3), colour_by='Sample_Type', shape_by = 'Sample_Type',point_size=2.5,text_by = 'Sample_Name',text_size = 2.5)
 
@@ -279,6 +279,8 @@ plotReducedDim(sce.hvgs,'PCA',colour_by = 'label',shape_by='Sample_Type',point_s
 #library('edgeR')
 
 counts61 <- counts(sce.hvgs)
+
+
 
 groups <- c(1,1,1,1,1,1,1,2,2,2,2,2)
 

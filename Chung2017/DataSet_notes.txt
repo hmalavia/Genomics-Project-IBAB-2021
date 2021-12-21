@@ -1,0 +1,8 @@
+### Chung2017 ###
+
+Patients > 11
+	 > Subtypes : luminal A;luminal B;HER2,TNBC
+	 > ER+ -> (BC01,BCO2;luminal A)
+	 > ER/HER2+ -> (BC03;luminal B)
+	 > HER2+ -> (BC04,5,6)
+	 > TNBC -> (BC07-BC11)
