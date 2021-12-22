@@ -376,7 +376,7 @@ SigUpDown <- rbind(Sigup,SigDown)
 
 SigUpDown <- SigUpDown[order(-SigUpDown$logFC),]
 
-write.csv(Sigup,'scran_results/Br11/new/Br11_DE_genes_ALL_edgeR.csv',quote = F)
+write.csv(SigUpDown,'scran_results/Br11/new/Br11_DE_genes_ALL_edgeR.csv',quote = F)
 
 logcpm <- cpm(counts_new,log=T)
 
