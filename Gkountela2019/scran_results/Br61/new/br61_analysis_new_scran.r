@@ -40,11 +40,13 @@ outliers <- c('Cluster_4')
 
 coldata_new <- coldata[!coldata$Sample_Name %in% outliers,]
 
+br61_new <- counts[,rownames(coldata_new)]
+
 #write.csv(coldata61,'coldata61.csv',quote = F)
 
 #### Create singleCellExperimentObject ####
 
-sce <- SingleCellExperiment(assays = list(counts = br61),colData = coldata)
+sce <- SingleCellExperiment(assays = list(counts = br61_new),colData = coldata_new)
 
 sce$Sample_Type <- factor(sce$Sample_Type)
 sce$Donor <- factor(sce$Donor)
@@ -52,9 +54,9 @@ sce@colData
 
 #### Adding spike in counts as altexp ####
 
-spikes <- grep(rownames(br61),pattern = "^ERCC-",value = T)
+spikes <- grep(rownames(br61_new),pattern = "^ERCC-",value = T)
 
-spikecounts <- br61[spikes,]
+spikecounts <- br61_new[spikes,]
 
 spikein <- SummarizedExperiment(list(counts=spikecounts))
 
@@ -226,7 +228,7 @@ abline(v=chosen.elbow,col='red')
 
 plotReducedDim(sce.hvgs,dimred = 'PCA',colour_by = 'Sample_Type',point_size=2.5)
 
-plotReducedDim(sce.hvgs,dimred = 'PCA',colour_by = 'Sample_Type',point_size=2.5,text_by = 'Sample_Name')
+plotReducedDim(sce.hvgs,dimred = 'PCA',colour_by = 'Sample_Type',point_size=2.5,text_by = 'Sample_Name',text_size = 2.5)
 
 plotReducedDim(sce.hvgs,dimred = 'PCA',ncomponents = 4,colour_by = 'Sample_Type',shape_by = 'Sample_Type', point_size=2.5)
 
