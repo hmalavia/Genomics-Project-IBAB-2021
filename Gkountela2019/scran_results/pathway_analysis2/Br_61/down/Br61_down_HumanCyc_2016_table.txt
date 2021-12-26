@@ -1,0 +1,3 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+ceramide de novo biosynthesis Homo sapiens PWY3DJ-12	1/7	0.029718695945433443	0.05449596012786739	0	0	39.03529411764706	137.24727196053433	SPTLC2
+L-kynurenine degradation Homo sapiens PWY-6309	1/13	0.05449596012786739	0.05449596012786739	0	0	19.511764705882353	56.77199069596926	GOT2
