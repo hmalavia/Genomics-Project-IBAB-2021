@@ -43,6 +43,6 @@ Br61_down <- Br61_down[order(Br61_down$Adjusted.P.value,decreasing = F),]
 
 Br61_down_sig <- Br61_down[Br61_down$Adjusted.P.value < 0.05,]
 
-write.csv(Br11_down,'../../../pathway_analysis2/Br_61/down/Br61_down_allPathways',row.names = F,quote = F)
+write.csv(Br61_down,'../../../pathway_analysis2/Br_61/down/Br61_down_allPathways',row.names = F,quote = F)
 
-write.csv(Br11_down_sig,'../../../pathway_analysis2/Br_61/down/Br61_down_SigPathways',row.names = F,quote = F)
+write.csv(Br61_down_sig,'../../../pathway_analysis2/Br_61/down/Br61_down_SigPathways',row.names = F,quote = F)
