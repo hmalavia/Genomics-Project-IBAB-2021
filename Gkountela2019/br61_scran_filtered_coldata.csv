@@ -1,0 +1,13 @@
+,Sample_Name,Sample_Type,Number_of_Cells,CTC_Cluster_Size,Number_of_CTC,Donor
+Br61.CTC.18,Cluster_1,CTC-cluster,1,2,1,Br61
+Br61.CTC.22,Cluster_2,CTC-cluster,1,3,1,Br61
+Br61.CTC.23,Cluster_3,CTC-cluster,2,3,2,Br61
+Br61.CTC.34,Cluster_5,CTC-cluster,1,2,1,Br61
+Br61.CTC.38,Cluster_6,CTC-cluster,2,2,2,Br61
+Br61.CTC.45,Cluster_7,CTC-cluster,1,2,1,Br61
+Br61.CTC.10,Single_1,CTC-single,1,NA,1,Br61
+Br61.CTC.13,Single_2,CTC-single,1,NA,1,Br61
+Br61.CTC.20,Single_3,CTC-single,1,NA,1,Br61
+Br61.CTC.35,Single_5,CTC-single,1,NA,1,Br61
+Br61.CTC.4,Single_6,CTC-single,1,NA,1,Br61
+Br61.CTC.6,Single_7,CTC-single,1,NA,1,Br61

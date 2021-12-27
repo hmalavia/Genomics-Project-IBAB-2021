@@ -191,12 +191,24 @@ dim(sce.hvgs)
 
 chosen.hvgs <- getTopHVGs(sce.hvgs,var.field = 'bio',var.threshold = 1,row.names = T)
 
+sce.hvgs <- sce[chosen.hvgs,] 
+sce.hvgs
+
+br61_scran_norm_counts <- as.data.frame(logcounts(sce))
+
+write.csv(br61_scran_norm_counts,'br61_scran_norm_counts.csv',quote = F)
+
+coldata_filtered <- as.data.frame(colData(sce))
+
+coldata_filtered <- coldata_filtered[,1:6]
+
+write.csv(coldata_filtered,'br61_scran_filtered_coldata.csv',quote = F)
+
 #length(chosen.hvgs)
 
 #### PCA ####
 
-sce.hvgs <- sce[chosen.hvgs,] 
-sce.hvgs
+
 
 set.seed(100)
 
