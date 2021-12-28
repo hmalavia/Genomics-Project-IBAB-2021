@@ -214,16 +214,16 @@ sce.hvgs <- sce[chosen.hvgs,]
 #sce.hvgs
 #### Saving Normalised counts ####
 
-br11_norm_counts <- logcounts(sce)
-
-write.csv(br11_norm_counts,'br11_scran_norm_counts.csv',quote=F)
-
-coldata_filtered <- as.data.frame(colData(sce))
-
-coldata_filtered <- coldata_filtered[,2:7]
-
-write.csv(coldata_filtered,'br11_filtered_coldata.csv',quote=F)
-
+# br11_norm_counts <- logcounts(sce)
+# 
+# write.csv(br11_norm_counts,'br11_scran_norm_counts.csv',quote=F)
+# 
+# coldata_filtered <- as.data.frame(colData(sce))
+# 
+# coldata_filtered <- coldata_filtered[,2:7]
+# 
+# write.csv(coldata_filtered,'br11_filtered_coldata.csv',quote=F)
+# 
 #length(chosen.hvgs)
 
 #### PCA ####
@@ -318,23 +318,11 @@ plotReducedDim(sce.hvgs,'PCA',colour_by = 'label',shape_by='Sample_Type',point_s
 
 #library('edgeR')
 
-sce.hvgs$Sample_ID
-
-samples <- colData(sce.hvgs)
-
-samples <- as.data.frame(samples)
-
-out <- c("CTC-single_2","CTC-single_3","CTC-single_4")
-
-samples_new <- samples[!samples$Sample_ID %in% out, ]
-
-groups <- c(1,1,2,2,2,2,2,2)
+groups <- c(1,1,2,2,2,2,2,2,2)
 
 counts <- counts(sce.hvgs)
 
-counts_new <- counts[,rownames(samples_new)]
-
-y <- DGEList(counts_new,samples=samples_new,group = groups )
+y <- DGEList(counts,samples=colData(sce.hvgs),group = groups )
 
 #y$counts
 
@@ -390,7 +378,7 @@ SigUpDown <- rbind(Sigup,SigDown)
 
 SigUpDown <- SigUpDown[order(-SigUpDown$logFC),]
 
-write.csv(Sigup,'scran_results/Br11/new/Br11_DE_genes_ALL_edgeR.csv',quote = F)
+write.csv(SigUpDown,'scran_results/Br11/new/Br11_DE_genes_ALL_edgeR.csv',quote = F)
 
 logcpm <- cpm(counts_new,log=T)
 
@@ -422,4 +410,4 @@ epiUpDown <- merge(SigUpDown,epigenes,by.x=0,by.y=1)
 
 epiUpDown <- epiUpDown[order(-epiUpDown$logFC),]
 
-write.csv(emtUpDown,'scran_results/Br11/new/br11_epi_genes_edgeR.csv',quote = F,row.names = F)
+write.csv(epiUpDown,'scran_results/Br11/new/br11_epi_genes_edgeR.csv',quote = F,row.names = F)
