@@ -20,10 +20,6 @@ counts <- as.matrix(counts)
 samples <- grep('Br11',colnames(counts))
 
 br11 <- counts[,samples]
-#br11
-
-br11_new <- counts[,rownames(samples_new)]
-
 #### load sample data ####
 
 coldata <- read.csv('Gkountela_coldata.csv')
@@ -34,7 +30,7 @@ coldata <- coldata[,2:ncol(coldata)]
 
 #coldata
 
-coldata11_new <- coldata[rownames(samples_new),]
+coldata11 <- coldata[samples,]
 
 #coldata11
 
@@ -61,12 +57,18 @@ generate_SampleID <- function(cd){
   return(cd)
 }
 
-coldata11_new <- generate_SampleID(coldata11_new)
+coldata11 <- generate_SampleID(coldata11)
 #write.csv(coldata11,'coldata11.csv',quote = F)
+#### Remove outliers ####
+out <- c("CTC-single_2","CTC-single_3","CTC-single_4")
+
+coldata11 <- coldata11[!coldata11$Sample_ID %in% out,]
+
+br11 <- br11[,rownames(coldata11)]
 
 #### Create singleCellExperimentObject ####
 
-sce <- SingleCellExperiment(assays = list(counts = br11_new),colData = coldata11_new)
+sce <- SingleCellExperiment(assays = list(counts = br11),colData = coldata11)
 
 sce$Sample_Type <- factor(sce$Sample_Type)
 sce$Donor <- factor(sce$Donor)
@@ -74,9 +76,9 @@ sce@colData
 
 #### Adding spike in counts as altexp ####
 
-spikes <- grep(rownames(br11_new),pattern = "^ERCC-",value = T)
+spikes <- grep(rownames(br11),pattern = "^ERCC-",value = T)
 
-spikecounts <- br11_new[spikes,]
+spikecounts <- br11[spikes,]
 
 spikein <- SummarizedExperiment(list(counts=spikecounts))
 
@@ -188,7 +190,7 @@ lib.sf <- librarySizeFactors(sce)
 
 sce <- logNormCounts(sce,size.factors=lib.sf)
 
-#assays(sce)
+assays(sce)
 
 #### Feature Selection ####
 
@@ -208,13 +210,23 @@ dim(sce.hvgs)
 
 chosen.hvgs <- getTopHVGs(sce.hvgs,var.field = 'bio',var.threshold = 1,row.names = T)
 
+sce.hvgs <- sce[chosen.hvgs,] 
+#sce.hvgs
+#### Saving Normalised counts ####
+
+br11_norm_counts <- logcounts(sce)
+
+write.csv(br11_norm_counts,'br11_scran_norm_counts.csv',quote=F)
+
+coldata_filtered <- as.data.frame(colData(sce))
+
+coldata_filtered <- coldata_filtered[,2:7]
+
+write.csv(coldata_filtered,'br11_filtered_coldata.csv',quote=F)
+
 #length(chosen.hvgs)
 
 #### PCA ####
-
-sce.hvgs <- sce[chosen.hvgs,] 
-#sce.hvgs
-
 set.seed(100)
 
 sce <- fixedPCA(sce,subset.row = NULL)

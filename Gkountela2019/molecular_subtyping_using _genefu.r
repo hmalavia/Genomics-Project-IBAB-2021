@@ -61,19 +61,19 @@ subtypePredictions_pam50 <- molecular.subtyping(sbt.model = '',data = count_data
 
 subtypePredictions_scmod1$subtype
 
-Basals<-names(which(subtypePredictions_scmod1$subtype == "ER-/HER2-"))
+Basals1<-names(which(subtypePredictions_scmod1$subtype == "ER-/HER2-"))
 #Select samples pertaining to HER2 Subtype
-HER2s<-names(which(subtypePredictions_scmod1$subtype == "HER2+"))
+HER2s1<-names(which(subtypePredictions_scmod1$subtype == "HER2+"))
 #Select samples pertaining to Luminal Subtypes
-LuminalB<-names(which(subtypePredictions_scmod1$subtype == "ER+/HER2- High Prolif"))
-LuminalA<-names(which(subtypePredictions_scmod1$subtype == "ER+/HER2- Low Prolif"))
+LuminalB1<-names(which(subtypePredictions_scmod1$subtype == "ER+/HER2- High Prolif"))
+LuminalA1<-names(which(subtypePredictions_scmod1$subtype == "ER+/HER2- Low Prolif"))
 
-Basals<-names(which(subtypePredictions_scmod2$subtype == "ER-/HER2-"))
+Basals2<-names(which(subtypePredictions_scmod2$subtype == "ER-/HER2-"))
 #Select samples pertaining to HER2 Subtype
-HER2s<-names(which(subtypePredictions_scmod2$subtype == "HER2+"))
+HER2s2<-names(which(subtypePredictions_scmod2$subtype == "HER2+"))
 #Select samples pertaining to Luminal Subtypes
-LuminalB<-names(which(subtypePredictions_scmod2$subtype == "ER+/HER2- High Prolif"))
-LuminalA<-names(which(subtypePredictions_scmod2$subtype == "ER+/HER2- Low Prolif"))
+LuminalB2<-names(which(subtypePredictions_scmod2$subtype == "ER+/HER2- High Prolif"))
+LuminalA2<-names(which(subtypePredictions_scmod2$subtype == "ER+/HER2- Low Prolif"))
 
 
 sampledata <- read.csv('br61_scran_filtered_coldata.csv')
@@ -84,17 +84,17 @@ sampledata <- sampledata[,2:ncol(sampledata)]
 
 sampledata$scmod1 <- ""
 
-sampledata[Basals,]$scmod1 <- 'basal'
-sampledata[HER2s,]$scmod1 <- 'her2'
-sampledata[LuminalA,]$scmod1 <- 'lumA'
-sampledata[LuminalB,]$scmod1 <- 'lumB'
+sampledata[Basals1,]$scmod1 <- 'basal'
+sampledata[HER2s1,]$scmod1 <- 'her2'
+sampledata[LuminalA1,]$scmod1 <- 'lumA'
+sampledata[LuminalB1,]$scmod1 <- 'lumB'
 
 sampledata$scmod2 <- ""
 
-sampledata[Basals,]$scmod2 <- 'basal'
-sampledata[HER2s,]$scmod2 <- 'her2'
-sampledata[LuminalA,]$scmod2 <- 'lumA'
-sampledata[LuminalB,]$scmod2 <- 'lumB'
+sampledata[Basals2,]$scmod2 <- 'basal'
+sampledata[HER2s2,]$scmod2 <- 'her2'
+sampledata[LuminalA2,]$scmod2 <- 'lumA'
+sampledata[LuminalB2,]$scmod2 <- 'lumB'
 
 
 write.csv(sampledata,'br61_molecular_subtypes_genefu.csv',quote = F)

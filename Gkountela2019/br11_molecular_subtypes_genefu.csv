@@ -1,0 +1,10 @@
+,Sample_Type,Number_of_Cells,CTC_Cluster_Size,Number_of_CTC,Donor,Sample_ID,scmod1,scmod2,scmgene
+Br11.10,CTC-cluster,2,2,2,Br11,CTC-cluster_1,her2,her2,her2
+Br11.18,CTC-cluster,2,2,2,Br11,CTC-cluster_2,basal,basal,basal
+Br11.1,CTC-single,1,NA,1,Br11,CTC-single_1,lumB,her2,lumA
+Br11.2,CTC-single,1,NA,1,Br11,CTC-single_5,lumB,her2,her2
+Br11.3,CTC-single,1,NA,1,Br11,CTC-single_6,her2,her2,her2
+Br11.4,CTC-single,1,NA,1,Br11,CTC-single_7,lumA,her2,her2
+Br11.6,CTC-single,1,NA,1,Br11,CTC-single_8,lumA,her2,her2
+Br11.8,CTC-single,1,NA,1,Br11,CTC-single_10,her2,her2,her2
+Br11.9,CTC-single,1,NA,1,Br11,CTC-single_11,lumA,her2,her2
