@@ -1,0 +1,16 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+cdc25 and chk1 Regulatory Pathway in response to DNA damage Homo sapiens h cdc25Pathway	1/7	0.0017489165149326186	0.0064137203438528745	0	0	832.875	5287.722499803602	CDK1
+BTG family proteins and cell cycle regulation Homo sapiens h btg2Pathway	1/9	0.00224816055240216	0.0064137203438528745	0	0	624.59375	3808.549663430724	CHAF1B
+Sonic Hedgehog Receptor Ptc1 Regulates cell cycle Homo sapiens h ptc1Pathway	1/9	0.00224816055240216	0.0064137203438528745	0	0	624.59375	3808.549663430724	CDK1
+Regulation of Splicing through Sam68 Homo sapiens h sam68Pathway	1/10	0.0024977078641967437	0.0064137203438528745	0	0	555.1666666666666	3326.7706415121643	CDK1
+Protein Kinase A at the Centrosome Homo sapiens h akapCentrosomePathway	1/12	0.002996653029893649	0.0064137203438528745	0	0	454.1818181818182	2638.914119276588	CDK1
+RB Tumor Suppressor/Checkpoint Signaling in response to DNA damage Homo sapiens h rbPathway	1/13	0.003246050875089783	0.0064137203438528745	0	0	416.3125	2385.6022367218384	CDK1
+AKAP95 role in mitosis and chromosome dynamics Homo sapiens h akap95Pathway	1/14	0.0034953988931204698	0.0064137203438528745	0	0	384.2692307692308	2173.5450385769154	CDK1
+Estrogen-responsive protein Efp controls cell cycle and breast tumors growth Homo sapiens h EfpPathway	1/15	0.00374469708393798	0.0064137203438528745	0	0	356.80357142857144	1993.609466758919	CDK1
+CDK Regulation of DNA Replication Homo sapiens h mcmPathway	1/18	0.0044922927083929694	0.0064137203438528745	0	0	293.79411764705884	1588.072397289777	CDC6
+Regulation of cell cycle progression by Plk3 Homo sapiens h plk3Pathway	1/18	0.0044922927083929694	0.0064137203438528745	0	0	293.79411764705884	1588.072397289777	CDK1
+Cell Cycle: G2/M Checkpoint Homo sapiens h g2Pathway	1/22	0.005488389443320514	0.0064137203438528745	0	0	237.78571428571428	1237.7032790036255	CDK1
+Cyclins and Cell Cycle Regulation Homo sapiens h cellcyclePathway	1/23	0.005737289113328647	0.0064137203438528745	0	0	226.9659090909091	1171.3185051583378	CDK1
+How Progesterone Initiates the Oocyte Maturation Homo sapiens h mPRPathway	1/23	0.005737289113328647	0.0064137203438528745	0	0	226.9659090909091	1171.3185051583378	CDK1
+Stathmin and breast cancer resistance to antimicrotubule agents Homo sapiens h stathminPathway	1/24	0.0059861389875960165	0.0064137203438528745	0	0	217.08695652173913	1111.1180475941821	CDK1
+Cell Cycle: G1/S Check Point  Homo sapiens h g1Pathway	1/26	0.006483689369798885	0.006483689369798885	0	0	199.7	1006.1815770136444	CDK1

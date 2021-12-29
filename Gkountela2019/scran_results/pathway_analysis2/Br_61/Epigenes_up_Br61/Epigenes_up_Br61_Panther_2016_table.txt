@@ -1,0 +1,2 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+DNA replication Homo sapiens P00017	1/19	0.00474139160939957	0.00474139160939957	0	0	277.4583333333333	1484.7973498875915	TOP2A
