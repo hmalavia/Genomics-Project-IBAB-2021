@@ -1,0 +1,2 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+protein citrullination Homo sapiens PWY-4921	1/5	0.007726694289035996	0.007726694289035996	0	0	166.375	809.0939625056958	PADI4
