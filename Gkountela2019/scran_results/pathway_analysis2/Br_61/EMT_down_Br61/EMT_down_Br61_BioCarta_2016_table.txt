@@ -1,0 +1,4 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+Pertussis toxin-insensitive CCR5 Signaling in Macrophage Homo sapiens h Ccr5Pathway	1/9	0.0013494318923464072	0.0022483852857590027	0	0	1249.3125	8255.5464452602	CCL2
+Platelet Amyloid Precursor Protein Pathway Homo sapiens h plateletAppPathway	1/14	0.0020985970505495682	0.0022483852857590027	0	0	768.6153846153846	4739.656184381286	PLAU
+Fibrinolysis Pathway Homo sapiens h fibrinolysisPathway	1/15	0.0022483852857590027	0.0022483852857590027	0	0	713.6785714285714	4351.685756891909	PLAU
