@@ -1,0 +1,2 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+protein ubiquitylation Homo sapiens PWY-7511	1/44	0.002199960717942337	0.002199960717942337	0	0	19956.0	122117.06559109333	UBE2T

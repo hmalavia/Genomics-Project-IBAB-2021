@@ -1,0 +1,2 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+Ubiquitin proteasome pathway Homo sapiens P00060	1/43	0.0021499613216957388	0.0021499613216957388	0	0	19957.0	122581.98940490963	UBE2T

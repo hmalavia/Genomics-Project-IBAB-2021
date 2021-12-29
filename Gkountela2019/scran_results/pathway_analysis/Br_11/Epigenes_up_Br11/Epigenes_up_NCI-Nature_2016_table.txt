@@ -1,0 +1,2 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+Fanconi anemia pathway Homo sapiens 6befb873-6192-11e5-8ac5-06603eb7f303	1/47	0.002349958939238154	0.002349958939238154	0	0	19953.0	120782.64067395544	UBE2T

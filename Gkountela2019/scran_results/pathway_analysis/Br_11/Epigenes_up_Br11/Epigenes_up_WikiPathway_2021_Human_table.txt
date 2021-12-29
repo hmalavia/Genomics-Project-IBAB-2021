@@ -1,0 +1,2 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+Gastric Cancer Network 2 WP2363	1/31	0.0015499690656704042	0.0015499690656704042	0	0	19969.0	129189.85098816035	UBE2T

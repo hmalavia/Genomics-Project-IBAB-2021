@@ -1,0 +1,2 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+Fanconi anemia pathway	1/54	0.002699954962856341	0.002699954962856341	0	0	19946.0	117971.01964061815	UBE2T

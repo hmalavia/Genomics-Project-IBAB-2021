@@ -1,0 +1,2 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+E2F Targets	1/200	0.009999898875429635	0.009999898875429635	0	0	19800.0	91182.56991022592	UBE2T
