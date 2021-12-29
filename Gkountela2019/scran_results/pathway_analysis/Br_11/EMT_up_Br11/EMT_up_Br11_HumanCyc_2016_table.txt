@@ -1,0 +1,2 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+retinoate biosynthesis I Homo sapiens PWY-6872	1/8	0.0031960315919264243	0.0031960315919264243	0	0	407.85714285714283	2343.4840743955892	ALDH1A3

@@ -1,0 +1,2 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+IGF1-IGFBP3-ALS complex (human)	1/3	0.0011995541091196305	0.0011995541091196305	0	0	1427.857142857143	9603.48923469958	IGFBP3
