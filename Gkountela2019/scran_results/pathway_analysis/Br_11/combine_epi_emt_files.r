@@ -27,6 +27,8 @@ Br11_epi_down <- Br11_epi_down[order(Br11_epi_down$Adjusted.P.value,decreasing =
 
 Br11_epi_down_sig <- Br11_epi_down[Br11_epi_down$Adjusted.P.value < 0.05,]
 
+Br11_epi_down_sig <- Br11_epi_down_sig[order(Br11_epi_down_sig$Combined.Score,decreasing = T),]
+
 write.csv(Br11_epi_down,'Br11_epi_down_allPathways',row.names = F,quote = F)
 
 write.csv(Br11_epi_down_sig,'Br11_epi_down_SigPathways',row.names = F,quote = F)
@@ -106,3 +108,48 @@ Common_epi_up <- Common_epi_up[order(Common_epi_up$Combined.Score.x,decreasing =
 write.csv(Common_emt_up,'../Common_emt_up_pathways.csv',row.names = F,quote = F)
 write.csv(Common_emt_down,'../Common_emt_down_pathways.csv',row.names = F,quote = F)
 write.csv(Common_epi_up,'../Common_epi_up_pathways.csv',row.names = F,quote = F)
+
+#### Unique Pathways ####
+
+Uniq_br11_emt_up <- Br11_emt_up_sig[!Br11_emt_up_sig$Term %in% Common_emt_up$Term,]
+
+Uniq_br11_emt_up <- Uniq_br11_emt_up[order(-Uniq_br11_emt_up$Combined.Score),]
+
+Uniq_br11_emt_down <- Br11_emt_down_sig[!Br11_emt_down_sig$Term %in% Common_emt_down$Term,]
+
+Uniq_br11_emt_down <- Uniq_br11_emt_down[order(-Uniq_br11_emt_down$Combined.Score),]
+
+Uniq_br11_epi_up <- Br11_epi_up_sig[!Br11_epi_up_sig$Term %in% Common_epi_up$Term,]
+
+Uniq_br11_epi_down <- Br11_epi_down_sig
+
+write.csv(Uniq_br11_emt_up,'../Uniq_br11_emt_up.csv',row.names = F,quote = F)
+
+write.csv(Uniq_br11_emt_down,'../Uniq_br11_emt_down.csv',row.names = F,quote = F)
+
+write.csv(Uniq_br11_epi_up,'../Uniq_br11_epi_up.csv',row.names = F,quote = F)
+
+write.csv(Uniq_br11_epi_down,'../Uniq_br11_epi_down.csv',row.names = F,quote = F)
+
+
+#### Br61 ####
+
+Uniq_br61_emt_up <- Br61_emt_up_sig[!Br61_emt_up_sig$Term %in% Common_emt_up$Term,]
+
+Uniq_br61_emt_up <- Uniq_br61_emt_up[order(-Uniq_br61_emt_up$Combined.Score),]
+
+Uniq_br61_emt_down <- Br61_emt_down_sig[!Br61_emt_down_sig$Term %in% Common_emt_down$Term,]
+
+Uniq_br61_emt_down <- Uniq_br61_emt_down[order(-Uniq_br61_emt_down$Combined.Score),]
+
+Uniq_br61_epi_up <- Br61_epi_up_sig[!Br61_epi_up_sig$Term %in% Common_epi_up$Term,]
+
+Uniq_br61_epi_up <- Uniq_br61_epi_up[order(-Uniq_br61_epi_up$Combined.Score),]
+
+write.csv(Uniq_br61_emt_up,'../../../pathway_analysis2/Br_61/Br61_uniq_emt_up.csv',row.names = F,quote = F)
+
+write.csv(Uniq_br61_emt_down,'../../../pathway_analysis2/Br_61/Br61_uniq_emt_down.csv',row.names = F,quote = F)
+
+write.csv(Uniq_br61_epi_up,'../../../pathway_analysis2/Br_61/Br61_uniq_epi_up.csv',row.names = F,quote = F)
+
+
