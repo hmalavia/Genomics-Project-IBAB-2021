@@ -1,0 +1,3 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+ATM Signaling Network in Development and Disease  WP3878	1/45	0.002249960119709436	0.0022999595269283277	0	0	19955.0	121662.49782449215	AURKB
+Regulation of Microtubule Cytoskeleton WP2038	1/46	0.0022999595269283277	0.0022999595269283277	0	0	19954.0	121217.83133114419	AURKB

@@ -1,0 +1,7 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+up metaphase anaphase telophase 60min noscapine release vs ctrl HeLa (Human) [19691289]	1/229	0.011449890919180231	0.0382197834930787	0	0	19771.0	88371.92302238473	AURKB
+up metaphase anaphase telophase 15min noscapine release vs ctrl HeLa (Human) [19691289]	1/359	0.017949861668733882	0.0382197834930787	0	0	19641.0	78960.21535056616	AURKB
+down metaphase anaphase telophase 15min noscapine release vs ctrl HeLa (Human) [19691289]	1/429	0.021449849020886726	0.0382197834930787	0	0	19571.0	75192.51928431286	AURKB
+down metaphase anaphase telophase 60min noscapine release vs ctrl HeLa (Human) [19691289]	1/517	0.025849835294077868	0.0382197834930787	0	0	19483.0	71219.15280033876	AURKB
+down Rapamycin vs Ctrl Exp1 MEFs (Mouse) [21659605]	1/637	0.03184981957756559	0.0382197834930787	0	0	19363.0	66738.9083258675	AURKB
+up M-phase HeLa (Human) [18669648]	1/2252	0.11259974390922778	0.11259974390922778	0	0	17748.0	38760.13828607828	AURKB

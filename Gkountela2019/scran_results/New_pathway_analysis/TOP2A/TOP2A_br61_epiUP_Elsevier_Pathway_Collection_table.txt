@@ -1,0 +1,4 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+Proteins Involved in Endometrial Cancer	1/50	0.002499957206903733	0.0035999456502131206	0	0	19950.0	119530.05920663517	TOP2A
+beta-Cell Destruction in Diabetes Mellitus Type 1	1/55	0.0027499544131125635	0.0035999456502131206	0	0	19945.0	117599.1294878737	TOP2A
+Proteins Involved in Breast Cancer Related to ERBB2/VEGFR/Akt Signaling Pathway	1/72	0.0035999456502131206	0.0035999456502131206	0	0	19928.0	112131.59838572377	TOP2A

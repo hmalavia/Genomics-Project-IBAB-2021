@@ -1,0 +1,14 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+cdc25 and chk1 Regulatory Pathway in response to DNA damage Homo sapiens h cdc25Pathway	1/7	3.4998943191536045E-4	0.00129997196179308	0	0	19993.0	159096.44871609515	CDK1
+Sonic Hedgehog Receptor Ptc1 Regulates cell cycle Homo sapiens h ptc1Pathway	1/9	4.499872571388355E-4	0.00129997196179308	0	0	19991.0	154056.46923976458	CDK1
+Regulation of Splicing through Sam68 Homo sapiens h sam68Pathway	1/10	4.999862257578379E-4	0.00129997196179308	0	0	19990.0	151942.5908680334	CDK1
+Protein Kinase A at the Centrosome Homo sapiens h akapCentrosomePathway	1/12	5.999842544083076E-4	0.00129997196179308	0	0	19988.0	148283.11962915692	CDK1
+RB Tumor Suppressor/Checkpoint Signaling in response to DNA damage Homo sapiens h rbPathway	1/13	6.499833083207112E-4	0.00129997196179308	0	0	19987.0	146675.87616784443	CDK1
+AKAP95 role in mitosis and chromosome dynamics Homo sapiens h akap95Pathway	1/14	6.999823856154149E-4	0.00129997196179308	0	0	19986.0	145187.40535746745	CDK1
+Estrogen-responsive protein Efp controls cell cycle and breast tumors growth Homo sapiens h EfpPathway	1/15	7.499814841592997E-4	0.00129997196179308	0	0	19985.0	143801.30885993244	CDK1
+Regulation of cell cycle progression by Plk3 Homo sapiens h plk3Pathway	1/18	8.999788927950273E-4	0.00129997196179308	0	0	19982.0	140136.54844084635	CDK1
+Cell Cycle: G2/M Checkpoint Homo sapiens h g2Pathway	1/22	0.001099975657412352	0.00129997196179308	0	0	19978.0	136099.47030191717	CDK1
+Cyclins and Cell Cycle Regulation Homo sapiens h cellcyclePathway	1/23	0.0011499748819949903	0.00129997196179308	0	0	19977.0	135204.63922267244	CDK1
+How Progesterone Initiates the Oocyte Maturation Homo sapiens h mPRPathway	1/23	0.0011499748819949903	0.00129997196179308	0	0	19977.0	135204.63922267244	CDK1
+Stathmin and breast cancer resistance to antimicrotubule agents Homo sapiens h stathminPathway	1/24	0.0011999741185782279	0.00129997196179308	0	0	19976.0	134347.69487847842	CDK1
+Cell Cycle: G1/S Check Point  Homo sapiens h g1Pathway	1/26	0.0012999726251831402	0.0012999726251831402	0	0	19974.0	132735.46073187632	CDK1

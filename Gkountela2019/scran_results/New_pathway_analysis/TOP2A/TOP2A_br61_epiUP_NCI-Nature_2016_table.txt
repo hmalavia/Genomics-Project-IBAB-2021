@@ -1,0 +1,2 @@
+Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+Validated transcriptional targets of deltaNp63 isoforms Homo sapiens 7d7360a8-6196-11e5-8ac5-06603eb7f303	1/45	0.002249960119709436	0.002249960119709436	0	0	19955.0	121662.49782449215	TOP2A
