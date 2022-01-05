@@ -14,6 +14,7 @@ set_names <- tools::file_path_sans_ext(file_names)
 
 brca_sets <- lapply(file_paths,read.csv,header=F)
 
+
 names(brca_sets) <- set_names
 
 names(brca_sets)
@@ -25,6 +26,15 @@ brca_sets_up <- lapply(brca_sets_up, function(x) x[names(x) %in% c("V2")])
 brca_sets_up1 <- lapply(brca_sets_up, function(x) as.list(x))
 
 brca_sets_up1 <- lapply(brca_sets_up, function(x) x[x != "Symbol"])
+
+
+epigenes <- read.csv('../CountMatrix/Epigenes_unique.csv',header = F)
+
+epigenes <- as.list(epigenes)
+
+gset <- lapply(epigenes,function(x) x[x!='HGNC.approved.symbol'])
+
+names(gset) <- 'epigenes'
 
 
 expr11 <- read.csv('br11_scran_norm_counts.csv')
@@ -39,15 +49,15 @@ expr11 <- as.matrix(expr11)
 
 es11_ssgsea <- gsva(expr11,brca_sets_up1,kcdf="Gaussian",method='ssgsea')
 
-es11_gsva <- gsva(expr11,brca_sets_up1,kcdf="Gaussian",mx.diff=T,abs.ranking=T)
+es11_epi <- gsva(expr11,gset,kcdf="Gaussian",mx.diff=T,abs.ranking=T)
 
 sdata11 <- read.csv('br11_filtered_coldata.csv')
 
-colnames(es11_gsva) <- sdata$Sample_ID
+colnames(es11_epi) <- sdata11$Sample_ID
 
-es11_gsva_trans <- t(es11_gsva)
+es11_epi_trans <- t(es11_epi)
 
-write.csv(es11_gsva_trans,'GSVA_analysis_br11_BRCA_gsets',quote = F)
+write.csv(es11_epi_trans,'GSVA_analysis_br11_epi_gsets',quote = F)
 
 expr61 <- read.csv('br61_scran_norm_counts.csv')
 
@@ -61,16 +71,16 @@ expr61 <- as.matrix(expr61)
 
 es61_ssgsea <- gsva(expr61,brca_sets_up1,kcdf="Gaussian",method='ssgsea')
 
-es61_gsva <- gsva(expr61,brca_sets_up1,kcdf="Gaussian",mx.diff=T,abs.ranking=T)
+es61_epi <- gsva(expr61,gset,kcdf="Gaussian",mx.diff=T,abs.ranking=T)
 
 sdata61 <- read.csv('br61_scran_filtered_coldata.csv')
 
-colnames(es61_gsva) <- sdata61$Sample_Name
+colnames(es61_epi) <- sdata61$Sample_Name
 colnames(es61_ssgsea) <- sdata61$Sample_Name
 
-es61_gsva_trans <- t(es61_gsva)
+es61_epi_trans <- t(es61_epi)
 
-write.csv(es61_gsva_trans,'GSVA_analysis_br61_BRCA_gsets',quote = F)
+write.csv(es61_epi_trans,'GSVA_analysis_br61_epi_gsets',quote = F)
 
 
 brca_sets_down <- lapply(brca_sets,function(x) x[x$V4 != 'positive',"V2"])
@@ -139,6 +149,10 @@ br61_common_genes_stemness <- expr61[rownames(expr61) %in% brca_sets_up$BRCA_ste
 
 br61_common_genes_stemness <- br61_common_genes_stemness[rowSums(br61_common_genes_stemness) > 0,]
 
+br61_common_genes_epi <- expr61[rownames(expr61) %in% gset$epigenes,]
+
+br61_common_genes_epi <- br61_common_genes_epi[rowSums(br61_common_genes_epi) > 0,]
+
 write.csv(br61_common_genes_emt,'GSVA_Analaysis/Br61_GSVA_emt_counts.csv',quote=F)
 
 write.csv(br61_common_genes_proliferation,'GSVA_Analaysis/Br61_GSVA_proliferation_counts.csv',quote=F)
@@ -149,6 +163,7 @@ write.csv(br61_common_genes_invasion,'GSVA_Analaysis/Br61_GSVA_invasion_counts.c
 
 write.csv(br61_common_genes_stemness,'GSVA_Analaysis/Br61_GSVA_stemness_counts.csv',quote=F)
 
+write.csv(br61_common_genes_epi,'GSVA_Analaysis/Br61_GSVA_epi_counts.csv',quote = F)
 
 br11_common_genes_emt <- expr11[rownames(expr11) %in% brca_sets_up$BRCA_EMT,]
 
@@ -170,6 +185,10 @@ br11_common_genes_stemness <- expr11[rownames(expr11) %in% brca_sets_up$BRCA_ste
 
 br11_common_genes_stemness <- br11_common_genes_stemness[rowSums(br11_common_genes_stemness) > 0,]
 
+br11_common_genes_epi <- expr11[rownames(expr11) %in% gset$epigenes,]
+
+br11_common_genes_epi <- br11_common_genes_epi[rowSums(br11_common_genes_epi) > 0,]
+
 write.csv(br11_common_genes_emt,'GSVA_Analaysis/Br11_GSVA_emt_counts.csv',quote=F)
   
 write.csv(br11_common_genes_proliferation,'GSVA_Analaysis/Br11_GSVA_proliferation_counts.csv',quote=F)
@@ -179,3 +198,6 @@ write.csv(br11_common_genes_metastasis,'GSVA_Analaysis/Br11_GSVA_metastastasis_c
 write.csv(br11_common_genes_invasion,'GSVA_Analaysis/Br11_GSVA_invasion_counts.csv',quote=F)
   
 write.csv(br11_common_genes_stemness,'GSVA_Analaysis/Br11_GSVA_stemness_counts.csv',quote=F)
+
+write.csv(br11_common_genes_epi,'GSVA_Analaysis/Br11_GSVA_epi_counts.csv')
+

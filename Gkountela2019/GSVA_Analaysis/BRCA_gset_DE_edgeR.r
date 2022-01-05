@@ -16,7 +16,7 @@ br11 <- counts[,grep('Br11',colnames(counts))]
 br11
 
 #### Subsetting only EMT geneset Counts ####
-counts <- br11[rownames(br11_common_genes_invasion),colnames(br11_common_genes_invasion)]
+counts <- br11[rownames(br11_common_genes_epi),colnames(br11_common_genes_epi)]
 
 #### DE analysis using edgeR ####
 
@@ -51,7 +51,7 @@ result <- qlf.2vs1$table
 
 result <- result[order(-result$logFC),]
 
-write.csv(result,'GSVA_Analaysis/Br11_invasion_gset_DEG.csv',quote = F)
+write.csv(result,'GSVA_Analaysis/Br61_epi_gset_DEG.csv',quote = F)
 
 # upreg <- result[result$logFC > 2 & result$PValue < 0.05,]
 # 
@@ -63,15 +63,15 @@ SigDown <- result[result$logFC < -1 & result$PValue < 0.05,]
 
 SigDown <- SigDown[order(SigDown$logFC,decreasing = F),]
 
-SigUpDown <- rbind(Sigup[1:15,],SigDown[1:15,])
+SigUpDown <- rbind(Sigup,SigDown)
 
-write.csv(SigUpDown,'GSVA_Analaysis/Br11_invasion_gset_SigUpDown_DEG.csv',quote=F)
+write.csv(SigUpDown,'GSVA_Analaysis/Br61_epi_gset_SigUpDown_DEG.csv',quote=F)
 
-logcpm <- read.csv('br11_scran_norm_counts.csv',row.names = "X")
+logcpm <- read.csv('br61_scran_norm_counts.csv',row.names = "X")
 
 logUpDown <- logcpm[rownames(SigUpDown),]
 
-new_col_names <- y$samples$Sample_ID
+new_col_names <- y$samples$Sample_Name
 
 colnames(logUpDown) <- new_col_names 
 
@@ -79,6 +79,6 @@ colnames(logUpDown) <- new_col_names
 
 #library('pheatmap')
 
-pheatmap(as.matrix(logUpDown),cluster_rows = T,cluster_cols = T,scale = 'row',main = "Differentialy expressed invasion related genes in Br11",xlab='Samples',ylab='Genes')
+pheatmap(as.matrix(logUpDown),cluster_rows = T,cluster_cols = T,scale = 'row',main = "Differentialy expressed epigenesis related genes in Br61",xlab='Samples',ylab='Genes')
 
 
