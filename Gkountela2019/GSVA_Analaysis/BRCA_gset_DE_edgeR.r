@@ -12,21 +12,19 @@ counts <- as.matrix(counts)
 
 head(counts)
 
-br61 <- grep(colnames(counts),'Br61')
-
-br61 <- counts[,grep('Br61',colnames(counts))]
-br61
+br11 <- counts[,grep('Br11',colnames(counts))]
+br11
 
 #### Subsetting only EMT geneset Counts ####
-counts <- br61[rownames(br61_common_genes_proliferation),colnames(br61_common_genes_proliferation)]
+counts <- br11[rownames(br11_common_genes_invasion),colnames(br11_common_genes_invasion)]
 
 #### DE analysis using edgeR ####
 
-sample_data <- read.csv('br61_scran_filtered_coldata.csv')
+sample_data <- read.csv('br11_filtered_coldata.csv')
 
 sample_data
 
-y <- DGEList(counts,samples=sample_data,group = groups )
+y <- DGEList(counts,samples=sample_data)
 
 # y$counts
 # 
@@ -34,10 +32,12 @@ y <- DGEList(counts,samples=sample_data,group = groups )
 
 y <- calcNormFactors(y)
 
+group <- factor(c(1,1,2,2,2,2,2,2,2))
+
+design <- model.matrix(~group)
+
 y <- estimateDisp(y, design)
 
-group <- factor(c(1,1,1,1,1,1,2,2,2,2,2,2))
-design <- model.matrix(~group)
 fit <- glmQLFit(y, design)
 
 qlf.2vs1 <- glmQLFTest(fit, coef=2)
@@ -51,7 +51,7 @@ result <- qlf.2vs1$table
 
 result <- result[order(-result$logFC),]
 
-write.csv(result,'GSVA_Analaysis/Br61_Proliferation_gset_DEG.csv',quote = F)
+write.csv(result,'GSVA_Analaysis/Br11_invasion_gset_DEG.csv',quote = F)
 
 # upreg <- result[result$logFC > 2 & result$PValue < 0.05,]
 # 
@@ -61,17 +61,17 @@ Sigup <- result[result$logFC > 1 & result$PValue < 0.05,]
 
 SigDown <- result[result$logFC < -1 & result$PValue < 0.05,]
 
-SigUpDown <- rbind(Sigup,SigDown)
+SigDown <- SigDown[order(SigDown$logFC,decreasing = F),]
 
-SigUpDown <- SigUpDown[order(-SigUpDown$logFC),]
+SigUpDown <- rbind(Sigup[1:15,],SigDown[1:15,])
 
-write.csv(SigUpDown,'GSVA_Analaysis/Br61_Proliferation_gset_SigUpDown_DEG.csv',quote=F)
+write.csv(SigUpDown,'GSVA_Analaysis/Br11_invasion_gset_SigUpDown_DEG.csv',quote=F)
 
-logcpm <- read.csv('br61_scran_norm_counts.csv',row.names = "X")
+logcpm <- read.csv('br11_scran_norm_counts.csv',row.names = "X")
 
 logUpDown <- logcpm[rownames(SigUpDown),]
 
-new_col_names <- y$samples$Sample_Name
+new_col_names <- y$samples$Sample_ID
 
 colnames(logUpDown) <- new_col_names 
 
@@ -79,6 +79,6 @@ colnames(logUpDown) <- new_col_names
 
 #library('pheatmap')
 
-pheatmap(as.matrix(logUpDown),cluster_rows = T,cluster_cols = T,scale = 'row',main = "Differentialy expressed Proliferation Genes in Br61",xlab='Samples',ylab='Genes')
+pheatmap(as.matrix(logUpDown),cluster_rows = T,cluster_cols = T,scale = 'row',main = "Differentialy expressed invasion related genes in Br11",xlab='Samples',ylab='Genes')
 
 

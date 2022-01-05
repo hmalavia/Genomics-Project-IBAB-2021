@@ -139,6 +139,16 @@ br61_common_genes_stemness <- expr61[rownames(expr61) %in% brca_sets_up$BRCA_ste
 
 br61_common_genes_stemness <- br61_common_genes_stemness[rowSums(br61_common_genes_stemness) > 0,]
 
+write.csv(br61_common_genes_emt,'GSVA_Analaysis/Br61_GSVA_emt_counts.csv',quote=F)
+
+write.csv(br61_common_genes_proliferation,'GSVA_Analaysis/Br61_GSVA_proliferation_counts.csv',quote=F)
+
+write.csv(br61_common_genes_metastasis,'GSVA_Analaysis/Br61_GSVA_metastastasis_counts.csv',quote=F)
+
+write.csv(br61_common_genes_invasion,'GSVA_Analaysis/Br61_GSVA_invasion_counts.csv',quote=F)
+
+write.csv(br61_common_genes_stemness,'GSVA_Analaysis/Br61_GSVA_stemness_counts.csv',quote=F)
+
 
 br11_common_genes_emt <- expr11[rownames(expr11) %in% brca_sets_up$BRCA_EMT,]
 
@@ -160,4 +170,12 @@ br11_common_genes_stemness <- expr11[rownames(expr11) %in% brca_sets_up$BRCA_ste
 
 br11_common_genes_stemness <- br11_common_genes_stemness[rowSums(br11_common_genes_stemness) > 0,]
 
-
+write.csv(br11_common_genes_emt,'GSVA_Analaysis/Br11_GSVA_emt_counts.csv',quote=F)
+  
+write.csv(br11_common_genes_proliferation,'GSVA_Analaysis/Br11_GSVA_proliferation_counts.csv',quote=F)
+  
+write.csv(br11_common_genes_metastasis,'GSVA_Analaysis/Br11_GSVA_metastastasis_counts.csv',quote=F)
+  
+write.csv(br11_common_genes_invasion,'GSVA_Analaysis/Br11_GSVA_invasion_counts.csv',quote=F)
+  
+write.csv(br11_common_genes_stemness,'GSVA_Analaysis/Br11_GSVA_stemness_counts.csv',quote=F)
