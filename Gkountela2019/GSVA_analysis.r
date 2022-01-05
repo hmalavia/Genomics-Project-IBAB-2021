@@ -2,13 +2,15 @@
 library(GSVA)
 library(stringr)
 
-file_names <- list.files('CancerSEA_markers/',full.names = T)
+file_paths <- list.files('CancerSEA_markers',pattern = "*.txt",full.names = T)
+
+file_names <- list.files('CancerSEA_markers',pattern = "*.txt",full.names = F)
 
 file_names
 
 set_names <- tools::file_path_sans_ext(file_names)
 
-csea_sets <- lapply(file_names,read.table,header=F) 
+csea_sets <- lapply(file_paths,read.table,header=F)
 
 names(csea_sets) <- set_names
 
