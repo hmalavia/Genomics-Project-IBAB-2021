@@ -1,0 +1,70 @@
+Names	total	elements
+Br61_EMT_Down Br61_invasion_Down Br61_metastasis_Down	1	NNMT
+Br61_EMT_Down Br61_metastasis_Down Br61_stemness_Down	1	SOX9
+Br61_invasion_Down Br61_metastasis_Down	1	SPTSSA
+Br61_EMT_Down Br61_invasion_Down	3	KRT86
+		CYP1B1
+		KRT17
+Br61_invasion_Down Br61_stemness_Down	1	FBXO2
+Br61_EMT_Down Br61_metastasis_Down	2	ASB14
+		C15orf48
+Br61_metastasis_Down Br61_stemness_Down	2	SPRN
+		FUCA1
+Br61_invasion_Down	18	PGAP2
+		IL13RA1
+		CHURC1
+		CEP128
+		ARCN1
+		DNAJC15
+		KDELR1
+		FABP7
+		TMEM110-MUSTN1
+		LACTB2
+		UCP2
+		ABHD3
+		MAOA
+		SMCO4
+		EIF2B1
+		SGCE
+		NAMPT
+		KDELR2
+Br61_metastasis_Down	21	ITGA5
+		MAP1B
+		LMO7
+		ULBP3
+		GRK5
+		SFXN3
+		MOXD1
+		TM4SF1
+		TNXB
+		ACADS
+		CDKN2B
+		AREG
+		DNAH10
+		GALNT5
+		B4GALT1
+		SERPINA3
+		MSN
+		PHLDA1
+		FAM214B
+		LHFPL2
+		FUT11
+Br61_EMT_Down	1	CCDC68
+Br61_stemness_Down	14	PIP
+		LZTS3
+		CLEC19A
+		CHST8
+		PBX4
+		OLFM4
+		DENND4A
+		MLLT11
+		COL28A1
+		XK
+		NAT6
+		NR4A1
+		ARHGAP4
+		ITGA10
+Br61_proliferation_Down	4	HIST1H1A
+		DEPDC1B
+		KCTD15
+		PIK3AP1

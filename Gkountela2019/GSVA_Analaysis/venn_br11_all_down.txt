@@ -1,0 +1,76 @@
+Names	total	elements
+Br11_EMT_Down Br11_invasion_Down Br11_metastasis_Down Br11_stemness_Down	1	TGFBI
+Br11_EMT_Down Br11_invasion_Down Br11_proliferation_Down Br11_stemness_Down	1	TMSB4X
+Br11_EMT_Down Br11_invasion_Down Br11_metastasis_Down	1	AVPR1A
+Br11_invasion_Down Br11_metastasis_Down	1	DNAJC15
+Br11_EMT_Down Br11_invasion_Down	5	GSTA4
+		LMO2
+		SPARC
+		ROPN1L
+		CR1L
+Br11_invasion_Down Br11_proliferation_Down	1	GSTM5
+Br11_EMT_Down Br11_metastasis_Down	1	PROS1
+Br11_metastasis_Down Br11_stemness_Down	1	CXCR4
+Br11_EMT_Down Br11_stemness_Down	1	CD99
+Br11_EMT_Down Br11_proliferation_Down	1	ACTB
+Br11_invasion_Down	5	METRN
+		ECHDC3
+		DECR1
+		MAP2
+		UCP2
+Br11_metastasis_Down	10	CPNE8
+		ITGA5
+		ITM2B
+		SLC2A3
+		GRK5
+		HBG2
+		PDE2A
+		HBG1
+		SNRPN
+		LYZ
+Br11_EMT_Down	14	FLNA
+		PPM1H
+		CST3
+		CD151
+		SERF2
+		KIF5B
+		TUBB4B
+		TUBA4B
+		CYP1B1
+		BSG
+		LGALS1
+		TIMP1
+		VIM
+		TPM2
+Br11_stemness_Down	15	TNIP2
+		PLEKHA4
+		DENND4A
+		TRANK1
+		JUND
+		FNBP1L
+		CWC25
+		XK
+		CTSA
+		SALL2
+		RASL10A
+		CSF3R
+		MAOB
+		H3F3B
+		ARHGAP4
+Br11_proliferation_Down	17	CYBB
+		LAPTM5
+		AIF1
+		PTN
+		SERPINE1
+		SPHK1
+		ORAI1
+		PARPBP
+		FAM83D
+		MYL6
+		RSAD2
+		TACC3
+		CCNB1
+		TMEM176A
+		TUBA1C
+		KRBOX1
+		GATM
